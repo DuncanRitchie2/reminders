@@ -1,0 +1,38 @@
+body{
+    background-color: #f6f6f6;
+}
+
+#sign-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 200%;
+    color: #f5b324;
+    text-shadow: black 1px 1px, black 1px -1px, black -1px 1px, black -1px -1px;
+}
+
+#button-cont{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.open-button{
+    background-color: #274E9B;
+    color: #f5b324;
+    width: 45%;
+    font-size: 150%;
+    border: 2px solid;
+}
+
+.open-button:hover{
+    background-color: #f5b324;
+    color: #274E9B;
+}
+
+.open-button:active{
+    transform: translateY(3px);
+}
