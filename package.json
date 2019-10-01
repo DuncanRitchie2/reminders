@@ -1,0 +1,22 @@
+{
+  "name": "reminders",
+  "version": "1.0.0",
+  "description": "Reminders app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DuncanRitchie2/reminders.git"
+  },
+  "keywords": [
+    "reminders"
+  ],
+  "author": "Duncan Ritchie, Stefan Gouldson, Tom Ormiston",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DuncanRitchie2/reminders/issues"
+  },
+  "homepage": "https://github.com/DuncanRitchie2/reminders#readme"
+}
