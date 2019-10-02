@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 // Pull in methods form app.js
-const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder} = require('.app')
+const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder} = require('./app')
 
 const app = express()
 
@@ -20,10 +20,10 @@ app.use(bodyParser.json())
 
 
 
-// GET   /getreminder
-app.get("/getreminder", async (req,res) => {
-
-    const data = await readReminder(req.body.readReminder)
+// POST   /getreminder
+app.post("/getreminder", async (req,res) => {
+console.log(req.body)
+    const data = await readReminder(req.body)
 
     console.log(data)
     res.send(data)
@@ -40,7 +40,7 @@ app.post("/register", async (req,res) => {
 
 
 // GET   /signin
-app.get("/signin", async (req,res) => {
+app.post("/signin", async (req,res) => {
 
     const data = await isUserRegistered(req.body.isUserRegistered)
     console.log(data)

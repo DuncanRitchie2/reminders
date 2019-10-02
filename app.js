@@ -15,7 +15,7 @@ const { promisify } = require('util')
 
 
 // Read reminders
-const readReminders = async () => {
+const readReminder = async (dataIn) => {
     try {
 
         // This is used when adding, editing or deleting a reminder
@@ -28,18 +28,19 @@ const readReminders = async () => {
         // "reminder_id":65, "reminder":"dog for walk"}
         
 
+        console.log(`dataIn   ${dataIn.user_id}  ${dataIn.reminder}`)
         // Mysql Query
         //const queryString = "SELECT reminder FROM users JOIN reminders ON users.id=reminders.user_id WHERE user_id=?;"
         //let data = await promisifiedQuery(queryString)
 
 
-        let data = { "user_id":1234,
-         "reminder_id":30, "reminder":"foo bar foo",
-         "reminder_id":45, "reminder":"boil eggs",
-         "reminder_id":65, "reminder":"dog for walk"}
+        let dataOut = [{user_id: 1234},{"reminder_id":30, "reminder":"foo bar foo"},{
+         "reminder_id":45, "reminder":"boil eggs"},{
+         "reminder_id":65, "reminder":"dog for walk"}]
 
         console.log('read Reminder SQL query')
-        return(data)
+        console.log(dataOut[0],  dataIn[1])
+        return(dataOut)
 
         
 
@@ -53,24 +54,25 @@ const readReminders = async () => {
 }
 
 
-
+readReminder({"user_id":1234, "reminder": "adding a test reminder"})
 
 // Check if the user is actually siged-up
-const isUserRegistered = async () => {
+const isUserRegistered = async (dataIn) => {
     try {
 
         // isUserRegistered:{"username" : "foo bar name"}
         // If the user exists; send eg {"user_id":1234} to client
         // Else user needs to sign on; send eg {"user_id":null} to client
 
+        console.log(dataIn)
 
-        let data = {"username" : "foo bar name"}
+        let dataOut = {"username" : "foo bar name"}
 
         //let data = {"user_id":null}
 
 
         console.log('is User Registered SQL query')
-        return(data)
+        return(dataOut)
 
 
     } catch (error) {
@@ -186,7 +188,7 @@ const deleteReminder = async () => {
 
 module.exports = {
 
-    readReminders,
+    readReminder,
     isUserRegistered,
     addReminder,
     addUser,
