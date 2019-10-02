@@ -36,3 +36,29 @@ body{
 .open-button:active{
     transform: translateY(3px);
 }
+
+#signIn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 200%;
+    color: #f5b324;
+    text-shadow: black 1px 1px, black 1px -1px, black -1px 1px, black -1px -1px;
+}
+
+#enter-cont{
+    display: flex;
+}
+
+#signUp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 200%;
+    color: #f5b324;
+    text-shadow: black 1px 1px, black 1px -1px, black -1px 1px, black -1px -1px;
+}
