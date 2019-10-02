@@ -38,7 +38,7 @@ const readReminders = async () => {
          "reminder_id":45, "reminder":"boil eggs",
          "reminder_id":65, "reminder":"dog for walk"}
 
-         console.log('read Reminder SQL query')
+        console.log('read Reminder SQL query')
         return(data)
 
         
