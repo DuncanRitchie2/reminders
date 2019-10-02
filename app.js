@@ -22,14 +22,14 @@ const readReminders = async () => {
         // Should read all reminders of the user from sql and 
         // send the entire list to client
         // eg 
-        // readReminders:{ "user_id":1234,
+        // { "user_id":1234,
         // "reminder_id":30, "reminder":"foo bar foo",
         // "reminder_id":45, "reminder":"boil eggs",
         // "reminder_id":65, "reminder":"dog for walk"}
         
 
         // Mysql Query
-        //const queryString = "SELECT * FROM users"
+        //const queryString = "SELECT reminder FROM users JOIN reminders ON users.id=reminders.user_id WHERE user_id=?;"
         //let data = await promisifiedQuery(queryString)
 
 
@@ -86,11 +86,12 @@ const isUserRegistered = async () => {
 // Add a reminder
 const addReminder = async () => {
     try {
+        // Mysql Query
+        //const queryString = "INSERT INTO reminders(user_id,reminder) VALUES (user_id,newreminder);"
+        //let data = await promisifiedQuery(queryString)
 
-
-        
         console.log('addReminder SQL query')
-        return(data)
+        readReminders()
 
 
     } catch (error) {
@@ -130,10 +131,16 @@ const editReminder = async () => {
     try {
 
 
-        // editeReminder:{"user_id" : 1234, "reminder_id": 30, "reminder":"this is new edited reminder"}
+        // editReminder:{"user_id" : 1234, "reminder_id": 30, "reminder":"this is new edited reminder"}
         // When sql edits a reminder, given only small text database presently
         // server should just re-send the users entire reminder list when query completed
         // this is a 'readReminder' sql query
+
+        // Mysql Query
+        //const queryString = "UPDATE reminders set reminder= newReminder where id=? && user_id=?;"
+        //let data = await promisifiedQuery(queryString)
+        //
+
 
         console.log('Edit reminder via SQL query')
         readReminders()
@@ -158,9 +165,13 @@ const deleteReminder = async () => {
         // server should just re-send the users entire reminder list when query completed
         // this is a 'readReminder' sql query
 
+        // Mysql Query
+        //const queryString = "DELETE FROM reminders WHERE id=? && user_id=?;"
+        //let data = await promisifiedQuery(queryString)
+        //
+
         console.log('delete reminder via SQL query')
         readReminders()
-        return(data)
 
 
     } catch (error) {
