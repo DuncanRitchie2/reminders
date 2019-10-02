@@ -1,6 +1,16 @@
+/* Affects entire portfolio */
 body{
-    background-color: #f6f6f6;
+    /* background-color: #f6f6f6; */
+    background-color: #274E9B;
+    font-family: 'Gilroy Light', 'Gilroy', 'Helvetica', sans-serif;
 }
+
+input{
+    font-size: 150%;
+    margin: 1%;
+}
+
+/* SPLASH PAGE */
 
 #sign-cont{
     display: flex;
@@ -10,7 +20,6 @@ body{
     height: 100vh;
     font-size: 200%;
     color: #f5b324;
-    text-shadow: black 1px 1px, black 1px -1px, black -1px 1px, black -1px -1px;
 }
 
 #button-cont{
@@ -22,10 +31,10 @@ body{
 
 .open-button{
     background-color: #274E9B;
-    color: #f5b324;
+    color: white;
     width: 45%;
     font-size: 150%;
-    border: 2px solid;
+    border: 2px solid #f5b324;
 }
 
 .open-button:hover{
@@ -37,6 +46,8 @@ body{
     transform: translateY(3px);
 }
 
+/* SIGN PAGE */
+
 #signIn{
     display: flex;
     flex-direction: column;
@@ -45,12 +56,32 @@ body{
     height: 100vh;
     font-size: 200%;
     color: #f5b324;
-    text-shadow: black 1px 1px, black 1px -1px, black -1px 1px, black -1px -1px;
 }
 
-#enter-cont{
+.enter-cont{
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+#enter{
+    height: 100%;
+    font-size: 150%;
+    background-color: transparent;
+    color: white;
+    border: #f5b324 solid 2px;
+}
+
+#enter:hover{
+    background-color: #f5b324;
+    color: #274E9B;
+}
+
+#enter:active{
+    transform: translateY(3px);
+}
+
+/* SIGN UP PAGE */
 
 #signUp{
     display: flex;
@@ -60,5 +91,57 @@ body{
     height: 100vh;
     font-size: 200%;
     color: #f5b324;
-    text-shadow: black 1px 1px, black 1px -1px, black -1px 1px, black -1px -1px;
+}
+
+#submit{
+    height: 100%;
+    font-size: 150%;
+    background-color: transparent;
+    color: white;
+    border: #f5b324 solid 2px;
+}
+
+#submit:hover{
+    background-color: #f5b324;
+    color: #274E9B;
+}
+
+#submit:active{
+    transform: translateY(3px);
+}
+
+@media only screen and (max-width:700px){
+    input{
+        font-size: 100%;
+    }
+
+    #sign-cont{
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .enter-cont{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #signIn{
+        font-size: 100%;
+        text-align: center;
+    }
+
+    #enter{
+        font-size: 100%;
+    }
+
+    #signUp{
+        font-size: 100%;
+        text-align: center;
+    }
+    
+
+    #submit{
+        font-size: 100%;
+    }
 }
