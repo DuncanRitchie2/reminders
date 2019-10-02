@@ -2,6 +2,55 @@
 // FAKE JSON DATA - 
 // client side
 
+
+//  ******  TOO MANY ENDPOINTS!!!!
+
+fetch("http://localhost:3030/addreminders")
+  .then(response => response.json())
+  .then(data => {
+    display.textContent = data.data
+  })
+
+
+
+
+  fetch("http://localhost:3030/signin")
+  .then(response => response.json())
+  .then(data => {
+    display.textContent = data.data
+  })
+
+
+  fetch("http://localhost:3030/editreminders")
+  .then(response => response.json())
+  .then(data => {
+    display.textContent = data.data
+  })
+
+
+  fetch("http://localhost:3030/deletereminders")
+  .then(response => response.json())
+  .then(data => {
+    display.textContent = data.data
+  })
+
+
+  fetch("http://localhost:3030/getreminders")
+  .then(response => response.json())
+  .then(data => {
+    display.textContent = data.data
+  })
+
+
+  fetch("http://localhost:3030/register")
+  .then(response => response.json())
+  .then(data => {
+    display.textContent = data.data
+  })
+
+
+
+
 const test_addReminder = () => {
     fetch("http://localhost:3019/addreminders",{
         method:"POST",
@@ -10,6 +59,7 @@ const test_addReminder = () => {
             addReminder: {"user_id":1234, "reminder": "adding a test reminder"}
         })
     })
+
 }
 
 

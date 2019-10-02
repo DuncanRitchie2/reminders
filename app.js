@@ -19,7 +19,7 @@ const readReminders = async () => {
     try {
 
         // This is used when adding, editing or deleting a reminder
-        // Should read all reminders od the user from sql and 
+        // Should read all reminders of the user from sql and 
         // send the entire list to client
         // eg 
         // readReminders:{ "user_id":1234,
