@@ -67,7 +67,7 @@ const test_addUser = () => {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
-            addUser: {"username" : 1234, "email" : "bob@hoskins.com" }
+            addUser: {"username" : "bob", "email" : "bob@hoskins.com" }
         })
     })
 }

@@ -23,38 +23,37 @@ app.use(bodyParser.json())
 // GET   /getreminder
 app.get("/getreminder", async (req,res) => {
 
-    //readReminder(req.body.readReminder)
-    console.log(req.body)
-    res.send("Read reminder GET request")
+    const data = await readReminder(req.body.readReminder)
+
+    console.log(data)
+    res.send(data)
 
 })
 
 
 // POST   /register
 app.post("/register", async (req,res) => {
-
-    //addUser(req.body.addUser)
-    console.log(req.body)
-    res.send("add user POST request")
-
+    const data = await addUser(req.body.addUser)
+    console.log(data)
+    res.send(data)
 })
 
 
 // GET   /signin
 app.get("/signin", async (req,res) => {
 
-    //isUserRegistered(req.body.isUserRegistered)
-    console.log(req.body)
-    res.send("Is user registered GET request")
+    const data = await isUserRegistered(req.body.isUserRegistered)
+    console.log(data)
+    res.send(data)
 })
 
 
 // POST   /addreminders
 app.post("/addreminders", async (req,res) => {
 
-    //addReminder(req.body.addReminder)
-    console.log(req.body)
-    res.send("Add reminder POST request")
+    const data = addReminder(req.body.addReminder)
+    console.log(data)
+    res.send(data)
 })
 
 
@@ -62,9 +61,9 @@ app.post("/addreminders", async (req,res) => {
 // DELETE  /deletereminders
 app.delete("/deletereminders", async (req,res) => {
 
-    // deleteReminder(req.body.reminderToDelete)
-    console.log(req.body)
-    res.send("DELETE reminder DELETE request")
+    const data = deleteReminder(req.body.deleteReminder)
+    console.log(data)
+    res.send(data)
 
 })
 
@@ -73,9 +72,9 @@ app.delete("/deletereminders", async (req,res) => {
 // PUT  /editreminders
 app.put("/editreminders", async (req,res) => {
 
-    // editReminder(req.body.reminderToDelete)
-    console.log(req.body)
-    res.send("Edit reminder PUT request")
+    const data = editReminder(req.body.editReminder)
+    console.log(data)
+    res.send(data)
 
 })
 
