@@ -43,7 +43,7 @@ p {
     margin-bottom: 6px;
 }
 
-input {
+#dashboard input {
     font-family: inherit;
     font-size: var(--body-size);
     min-width: calc(50% - 48px);
@@ -52,7 +52,7 @@ input {
     padding: 3px 6px;
 }
 
-button {
+#dashboard button {
     font-family: inherit;
     font-weight: 600;
     color: var(--warning-color);
