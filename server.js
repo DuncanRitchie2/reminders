@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 // Pull in methods form app.js
-const { readReminders, isUserRegistered, addReminder, addUser, editReminder, deleteReminder} = require('.app')
+const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder} = require('.app')
 
 const app = express()
 

@@ -39,7 +39,6 @@ const readReminders = async () => {
          "reminder_id":65, "reminder":"dog for walk"}
 
          console.log('read Reminder SQL query')
-
         return(data)
 
         
@@ -50,7 +49,7 @@ const readReminders = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -79,7 +78,7 @@ const isUserRegistered = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -89,7 +88,7 @@ const addReminder = async () => {
     try {
 
 
-        let data = {"user_id" : 1234, "id_reminder": 70, "reminder":"reminder text here"}
+        
         console.log('addReminder SQL query')
         return(data)
 
@@ -99,7 +98,7 @@ const addReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -111,7 +110,8 @@ const addUser = async () => {
         // addUser:{"username" : "bob", "email" : "bob@hoskins.com" }
         // Sql should add new user and give back a user_id
         // server should send this user_id to client eg. {"user_id" :1234}
-        let data = {"username" : "bob", "email" : "bob@hoskins.com" }
+        
+        let data = {"user_id" :1234}
         console.log('Add user via SQL query')
         return(data)
 
@@ -121,7 +121,7 @@ const addUser = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -135,9 +135,8 @@ const editReminder = async () => {
         // server should just re-send the users entire reminder list when query completed
         // this is a 'readReminder' sql query
 
-        let data = {"user_id" : 1234, "reminder_id": 30, "reminder":"this is new edited reminder"}
         console.log('Edit reminder via SQL query')
-        return(data)
+        readReminders()
 
 
     } catch (error) {
@@ -145,7 +144,7 @@ const editReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -159,8 +158,8 @@ const deleteReminder = async () => {
         // server should just re-send the users entire reminder list when query completed
         // this is a 'readReminder' sql query
 
-        let data = {"user_id" : 1234, "reminder_id": 70 }
         console.log('delete reminder via SQL query')
+        readReminders()
         return(data)
 
 
@@ -169,7 +168,7 @@ const deleteReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
