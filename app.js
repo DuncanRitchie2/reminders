@@ -76,7 +76,7 @@ const isUserRegistered = async (data) => {
 // Add a reminder
 const addReminder = async () => {
     try {
-        //Mysql Query
+        // Mysql Query
         // const queryString = "INSERT INTO reminders(user_id,reminder) VALUES (user_id,newreminder);"
         const queryString = "INSERT INTO reminders(user_id,reminder) VALUES (2,'test test test test test test');"
         let data = await promisifiedQuery(queryString)
