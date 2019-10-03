@@ -7,6 +7,7 @@ html {
     --highlight-color: #f5b32f;
     --highdark-color: #274e9b;
     --warning-color: #d32f2f;
+    --darkerblue-color: #0b3386;
     --body-size: 16px;
     --date-size: 14px;
     --button-size: 11px;
@@ -20,6 +21,8 @@ body{
     justify-content: center;
     margin: 0;
     padding: 0;
+    z-index: 100;
+
 }
 
 .wrapper{
@@ -57,6 +60,13 @@ input{
 
 .index-head{
     color: #f5b32f;
+    z-index: 100;
+    margin: 0 5vh 5vh 5vh;
+}
+
+.index-subhead{
+    z-index: 100;
+    margin: 0 5vh 10vh 5vh;
 }
 
 #button-cont{
@@ -72,6 +82,7 @@ input{
     width: 45%;
     font-size: 150%;
     border: 2px solid var(--highlight-color);
+    z-index: 100;
 }
 
 .open-button:hover{
@@ -82,6 +93,23 @@ input{
 .open-button:active{
     transform: translateY(3px);
 }
+
+
+
+#pen{
+    position: absolute;
+    width: 70vw;
+    left: 20vw;
+    bottom: 15vw;
+    z-index: 5;
+}
+
+.penPath {
+    fill: var(--darkerblue-color);
+}
+
+
+
 
 /* SIGN PAGE */
 
@@ -221,6 +249,12 @@ footer p {
     width: calc(100% - 24px);
     text-align: center;
 }
+
+
+
+
+
+
 
 @media only screen and (max-width:700px){
     input{
