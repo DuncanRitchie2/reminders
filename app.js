@@ -43,31 +43,32 @@ const readReminder = async () => {
 // readReminder()
 
 // Check if the user is actually siged-up
+
 const isUserRegistered = async (usernameGiven) => {
+    
     try {
-
+        
         console.log(usernameGiven)
-
+        
         //Mysql Query
-        // const queryString = "SELECT id FROM users WHERE username='tomo';"  //exists
-        // const queryString = "SELECT id FROM users WHERE username='aaaaaaaa';"  //dont exist
-        const queryString = `SELECT id FROM users WHERE username=${usernameGiven};`  //dont exist
+        const queryString = `SELECT id FROM users WHERE username='${usernameGiven}';`
+        
         let data = await promisifiedQuery(queryString)
 
-        console.log('is User Registered SQL query')
+        console.log(`is ${usernameGiven} Registered SQL query`)
         console.log(data[0])
 
-        let doesUserExist = null
         if(data[0] !== undefined){
-            console.log('user given exists in database')
-            doesUserExist = true
+            console.log(`user ${usernameGiven} given exists in database`)
+            console.log(data[0].id)
+            return data[0].id
         }
         else{
             console.log('user dosnt exist in database, client needs to ask to register')
-            doesUserExist = false
+            console.log(false)
+            return false
         }
-        console.log(doesUserExist)
-        return(doesUserExist)
+    
 
 
     } catch (error) {
@@ -81,7 +82,7 @@ const isUserRegistered = async (usernameGiven) => {
 
 
 //test
-// isUserRegistered()
+isUserRegistered()
 
 
 // Add a reminder
