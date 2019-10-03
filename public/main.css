@@ -33,6 +33,7 @@ button {
     font-size: 1em;
     border: 1px solid var(--warning-color);
     margin-bottom: 1em;
+    font-family: inherit;
 }
 
 
