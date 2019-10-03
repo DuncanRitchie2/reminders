@@ -36,7 +36,7 @@ const readReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 // TEST
@@ -75,7 +75,7 @@ const isUserRegistered = async (usernameGiven) => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -101,7 +101,7 @@ const addReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -132,7 +132,7 @@ const addUser = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 // test
@@ -164,7 +164,7 @@ const editReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -200,7 +200,7 @@ const deleteReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
