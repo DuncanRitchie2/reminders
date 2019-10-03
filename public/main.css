@@ -1,8 +1,20 @@
+
 /* Affects entire portfolio */
+
+html {
+    height: 100%;
+    --bkgd-color: #f6f6f6;
+    --body-color: #434343;
+    --highlight-color: #f5b32f;
+    --highdark-color: #274e9b;
+    --warning-color: #d32f2f;
+    --body-size: 16px;
+    font-family: 'Gilroy Light', 'Gilroy', 'Helvetica', sans-serif;
+}
+
 body{
     /* background-color: #f6f6f6; */
-    background-color: #274E9B;
-    font-family: 'Gilroy Light', 'Gilroy', 'Helvetica', sans-serif;
+    background-color: var(--bkgd-color);
 }
 
 input{
@@ -110,6 +122,63 @@ input{
 #submit:active{
     transform: translateY(3px);
 }
+
+
+
+body {
+    height: 100%;
+    background-color: var(--bkgd-color);
+    color: var(--body-color);
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+main {
+    padding: 12px 12px 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: calc(100% - 24px);
+}
+
+h1 {
+    color: var(--highdark-color);
+}
+
+p {
+    font-size: var(--body-size);
+}
+
+input {
+    font-family: inherit;
+    font-size: var(--body-size);
+    min-width: calc(50% - 80px);
+    max-width: 100%;
+    padding: 3px;
+    margin-bottom: 6px;
+}
+
+button {
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--warning-color);
+    padding: 9px;
+}
+
+#no-reminders-container {
+    display: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--highlight-color);
+    display: flex;
+    justify-content: space-evenly;
+}
+
 
 @media only screen and (max-width:700px){
     input{
