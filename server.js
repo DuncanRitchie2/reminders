@@ -21,30 +21,29 @@ app.use(bodyParser.json())
 
 
 // GET   /readreminder
-app.post("/readreminder", async (req,res) => {
-console.log(req.body)
-    const data = await readReminder()
-
+app.get("/readreminder", async (req,res) => {
+    console.log(req.body)
+    const data = await readReminder(req.body.user_id)
     console.log(data)
-    res.send(data)
+    res.send(data)  // returns an array of [{reminder: 'aaaaa'},{reminder:'bbbbbb'},{reminder:'ccccccc'}]
 
 })
 
 
 // POST   /register
 app.post("/register", async (req,res) => {
-    const data = await addUser(req.body.addUser)
-    console.log(data)
-    res.send(data)
+    const data = await addUser(req.body.addUser)   // addUser = {username:'fffffffff', email:'xxxxx@qqqq.com'}
+    console.log(data) // 1 if row added
+    res.send({message: 'Added new user ok'})
 })
 
 
 // GET   /signin
-app.post("/signin", async (req,res) => {
+app.get("/signin", async (req,res) => {
 
     const data = await isUserRegistered(req.body.isUserRegistered)
-    console.log(data)  // returns id of user or false
-    res.send(data)
+    console.log(data)  
+    res.send(data)  // returns id of user or false
 })
 
 
@@ -53,7 +52,9 @@ app.post("/addreminders", async (req,res) => {
 
     const data = addReminder(req.body.addReminder)
     console.log(data)
-    res.send(data)
+
+    // We may want to send a part of the data, not all.
+    res.send({message: 'Added reminders ok'})
 })
 
 
@@ -63,7 +64,7 @@ app.delete("/deletereminders", async (req,res) => {
 
     const data = deleteReminder(req.body.deleteReminder)
     console.log(data)
-    res.send(data)
+    res.send({message: 'Deleted reminders ok'})
 
 })
 
@@ -74,7 +75,7 @@ app.put("/editreminders", async (req,res) => {
 
     const data = editReminder(req.body.editReminder)
     console.log(data)
-    res.send(data)
+    res.send({message: 'Edited reminder ok'})
 
 })
 
