@@ -21,7 +21,6 @@ body{
     justify-content: center;
     margin: 0;
     padding: 0;
-    z-index: 100;
 
 }
 
@@ -52,7 +51,7 @@ input{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     font-size: 150%;
     color: var(--highlight-color);
@@ -67,7 +66,7 @@ input{
 
 .index-subhead{
     z-index: 100;
-    margin: 0 5vh 10vh 5vh;
+    margin: 36px 5vh 5vh 5vh;
 }
 
 #button-cont{
@@ -102,7 +101,7 @@ input{
     width: 70vw;
     left: 20vw;
     bottom: 15vw;
-    z-index: 5;
+    z-index: 0;
 }
 
 .penPath {
@@ -112,17 +111,21 @@ input{
 
 
 
-/* SIGN PAGE */
+/* SIGN IN PAGE */
 
-#signIn{
+#signInDiv{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     font-size: 200%;
     color: var(--highlight-color);
-    background-color: #274e9b;
+    background-color: var(--highdark-color);
+}
+
+#signInDiv * {
+    z-index: 2;
 }
 
 .enter-cont{
@@ -151,7 +154,7 @@ input{
 
 /* SIGN UP PAGE */
 
-#signUp{
+#signUpDiv{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,7 +162,11 @@ input{
     height: 100vh;
     font-size: 200%;
     color: var(--highlight-color);
-    background-color: #274e9b;
+    background-color: var(--highdark-color);
+}
+
+#signUpDiv * {
+    z-index: 2;
 }
 
 #submit{
