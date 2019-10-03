@@ -59,6 +59,10 @@ input{
     color: #f5b32f;
 }
 
+#num{
+    color: #f6f6f6;
+}
+
 #button-cont{
     display: flex;
     flex-direction: row;
