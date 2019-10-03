@@ -1,4 +1,3 @@
-
 /* Affects entire portfolio */
 
 html {
@@ -17,7 +16,25 @@ html {
 body{
     /* background-color: #f6f6f6; */
     background-color: var(--bkgd-color);
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.wrapper{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+}
+
+
+button {
+    font-size: 1em;
+    border: 1px solid var(--warning-color);
+    margin-bottom: 1em;
+}
+
 
 input{
     font-size: 100%;
@@ -34,7 +51,7 @@ input{
     height: 100vh;
     width: 100%;
     font-size: 150%;
-    color: #f5b324;
+    color: var(--highlight-color);
 }
 
 #button-cont{
@@ -45,16 +62,16 @@ input{
 }
 
 .open-button{
-    background-color: #274E9B;
-    color: white;
+    background-color: var(--highdark-color);
+    color: var(--bkgd-color);
     width: 45%;
     font-size: 150%;
-    border: 2px solid #f5b324;
+    border: 2px solid var(--highlight-color);
 }
 
 .open-button:hover{
-    background-color: #f5b324;
-    color: #274E9B;
+    background-color: var(--highlight-color);
+    color: var(--highdark-color);
 }
 
 .open-button:active{
@@ -70,7 +87,7 @@ input{
     justify-content: center;
     height: 100vh;
     font-size: 200%;
-    color: #f5b324;
+    color: var(--highlight-color);
 }
 
 .enter-cont{
@@ -83,13 +100,13 @@ input{
     height: 100%;
     font-size: 150%;
     background-color: transparent;
-    color: white;
-    border: #f5b324 solid 2px;
+    color: var(--bkgd-color);
+    border: var(--highlight-color) solid 2px;
 }
 
 #enter:hover{
-    background-color: #f5b324;
-    color: #274E9B;
+    background-color: var(--highlight-color);
+    color: var(--highdark-color);
 }
 
 #enter:active{
@@ -105,20 +122,20 @@ input{
     justify-content: center;
     height: 100vh;
     font-size: 200%;
-    color: #f5b324;
+    color: var(--highlight-color);
 }
 
 #submit{
     height: 100%;
     font-size: 150%;
     background-color: transparent;
-    color: white;
-    border: #f5b324 solid 2px;
+    color: var(--bkgd-color);
+    border: var(--highlight-color) solid 2px;
 }
 
 #submit:hover{
-    background-color: #f5b324;
-    color: #274E9B;
+    background-color: var(--highlight-color);
+    color: var(--highdark-color);
 }
 
 #submit:active{
