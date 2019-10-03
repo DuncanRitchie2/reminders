@@ -3,46 +3,32 @@ const { promisify } = require('util')
 
 
 
-// const connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "password1",
-//     database: "joinus"
-// })
+const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password1",
+    database: "reminder_app"
+})
 
-// const promisifiedQuery = promisify(connection.query).bind(connection)
+const promisifiedQuery = promisify(connection.query).bind(connection)
 
 
 
 // Read reminders
-const readReminder = async (dataIn) => {
+const readReminder = async () => {
     try {
 
         // This is used when adding, editing or deleting a reminder
         // Should read all reminders of the user from sql and 
         // send the entire list to client
-        // eg 
-        // { "user_id":1234,
-        // "reminder_id":30, "reminder":"foo bar foo",
-        // "reminder_id":45, "reminder":"boil eggs",
-        // "reminder_id":65, "reminder":"dog for walk"}
-        
 
-        console.log(`dataIn   ${dataIn.user_id}  ${dataIn.reminder}`)
-        // Mysql Query
-        //const queryString = "SELECT reminder FROM users JOIN reminders ON users.id=reminders.user_id WHERE user_id=?;"
-        //let data = await promisifiedQuery(queryString)
-
-
-        let dataOut = [{user_id: 1234},{"reminder_id":30, "reminder":"foo bar foo"},{
-         "reminder_id":45, "reminder":"boil eggs"},{
-         "reminder_id":65, "reminder":"dog for walk"}]
+        //Mysql Query
+        const queryString = "SELECT reminder FROM users JOIN reminders ON users.id=reminders.user_id WHERE user_id=1;"
+        let data = await promisifiedQuery(queryString)
 
         console.log('read Reminder SQL query')
-        console.log(dataOut[0],  dataIn[1])
-        return(dataOut)
-
-        
+        console.log(data)
+        return(data)
 
 
     } catch (error) {
@@ -50,29 +36,28 @@ const readReminder = async (dataIn) => {
         console.log(error.sqlMessage)
     }
 
-    // connection.end()
+    connection.end()
 }
 
-
-readReminder({"user_id":1234, "reminder": "adding a test reminder"})
+// TEST
+// readReminder()
 
 // Check if the user is actually siged-up
-const isUserRegistered = async (dataIn) => {
+const isUserRegistered = async (data) => {
     try {
 
         // isUserRegistered:{"username" : "foo bar name"}
         // If the user exists; send eg {"user_id":1234} to client
         // Else user needs to sign on; send eg {"user_id":null} to client
 
-        console.log(dataIn)
+        console.log(data)
 
-        let dataOut = {"username" : "foo bar name"}
-
-        //let data = {"user_id":null}
-
+        //Mysql Query
+        const queryString = "SELECT * FROM users;"  //TEMP !!
+        let data = await promisifiedQuery(queryString)
 
         console.log('is User Registered SQL query')
-        return(dataOut)
+        return(data)
 
 
     } catch (error) {
@@ -80,20 +65,24 @@ const isUserRegistered = async (dataIn) => {
         console.log(error.sqlMessage)
     }
 
-    // connection.end()
+    connection.end()
 }
 
 
 
+//test
+// isUserRegistered({"username" : "foo bar name"})
+
 // Add a reminder
 const addReminder = async () => {
     try {
-        // Mysql Query
-        //const queryString = "INSERT INTO reminders(user_id,reminder) VALUES (user_id,newreminder);"
-        //let data = await promisifiedQuery(queryString)
+        //Mysql Query
+        // const queryString = "INSERT INTO reminders(user_id,reminder) VALUES (user_id,newreminder);"
+        const queryString = "INSERT INTO reminders(user_id,reminder) VALUES (2,'test test test test test test');"
+        let data = await promisifiedQuery(queryString)
 
         console.log('addReminder SQL query')
-        readReminders()
+        return(data)
 
 
     } catch (error) {
@@ -101,9 +90,13 @@ const addReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    // connection.end()
+    connection.end()
 }
 
+
+
+// addReminder()
+// readReminder()
 
 
 const addUser = async () => {
@@ -124,7 +117,7 @@ const addUser = async () => {
         console.log(error.sqlMessage)
     }
 
-    // connection.end()
+    connection.end()
 }
 
 
@@ -139,13 +132,14 @@ const editReminder = async () => {
         // this is a 'readReminder' sql query
 
         // Mysql Query
-        //const queryString = "UPDATE reminders set reminder= newReminder where id=? && user_id=?;"
-        //let data = await promisifiedQuery(queryString)
-        //
-
+        // const queryString = "UPDATE reminders set reminder= newReminder where id=? && user_id=?;"
+        const queryString = "UPDATE reminders set reminder='The rain in Spain' where id=1 && user_id=1;"
+        let data = await promisifiedQuery(queryString)
+        
+        console.log(data)
 
         console.log('Edit reminder via SQL query')
-        readReminders()
+        //return(data)
 
 
     } catch (error) {
@@ -153,8 +147,13 @@ const editReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    // connection.end()
+    connection.end()
 }
+
+
+// test
+// editReminder()
+// readReminder()
 
 
 // Delete a reminder
@@ -168,12 +167,15 @@ const deleteReminder = async () => {
         // this is a 'readReminder' sql query
 
         // Mysql Query
-        //const queryString = "DELETE FROM reminders WHERE id=? && user_id=?;"
-        //let data = await promisifiedQuery(queryString)
-        //
+        // const queryString = "DELETE FROM reminders WHERE id=? && user_id=?;"
+        const queryString = "DELETE FROM reminders WHERE id=1 && user_id=1;"
+        let data = await promisifiedQuery(queryString)
+        
 
         console.log('delete reminder via SQL query')
-        readReminders()
+
+        console.log(data)
+        return(data)
 
 
     } catch (error) {
@@ -181,9 +183,14 @@ const deleteReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    // connection.end()
+    connection.end()
 }
 
+
+// // test
+// readReminder()
+// deleteReminder()
+// readReminder()
 
 
 module.exports = {

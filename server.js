@@ -20,10 +20,10 @@ app.use(bodyParser.json())
 
 
 
-// POST   /getreminder
-app.post("/getreminder", async (req,res) => {
+// GET   /readreminder
+app.post("/readreminder", async (req,res) => {
 console.log(req.body)
-    const data = await readReminder(req.body)
+    const data = await readReminder()
 
     console.log(data)
     res.send(data)

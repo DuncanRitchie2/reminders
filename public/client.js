@@ -14,125 +14,95 @@ const editreminder = document.getElementById('editreminder')
 
 //  ******  TOO MANY ENDPOINTS!!!!
 
-// fetch("http://localhost:3030/addreminders")
-//   .then(response => response.json())
-//   .then(data => {
-//     display.textContent = data.data
-//   })
-
-
-
-
-//   fetch("http://localhost:3030/signin")
-//   .then(response => response.json())
-//   .then(data => {
-//     display.textContent = data.data
-//   })
-
-
-//   fetch("http://localhost:3030/editreminders")
-//   .then(response => response.json())
-//   .then(data => {
-//     display.textContent = data.data
-//   })
-
-
-//   fetch("http://localhost:3030/deletereminders")
-//   .then(response => response.json())
-//   .then(data => {
-//     display.textContent = data.data
-//   })
-
-
-//   fetch("http://localhost:3030/getreminders")
-//   .then(response => response.json())
-//   .then(data => {
-//     display.textContent = data.data
-//   })
-
-
-//   fetch("http://localhost:3030/register")
-//   .then(response => response.json())
-//   .then(data => {
-//     display.textContent = data.data
-//   })
-
 
 
 
 addreminder.addEventListener('click', () => {
-    fetch("/addreminders",{
+    let responce = await fetch("/addreminders",{
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
+            // addReminder: {"user_id":1234, "reminder": "adding a test reminder"}
             addReminder: {"user_id":1234, "reminder": "adding a test reminder"}
         })
     })
 
-}
-)
+    let result = await responce.json()
+    console.log(result)
+
+})
 
 
 
 signin.addEventListener('click', () => {
-    fetch("/signin", {
+    let responce = await fetch("/signin", {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
             isUserRegistered: {"username" : "foo bar name"}
         })
     })
-}
-)
+
+    let result = await responce.json()
+    console.log(result)
+})
 
 
 editreminder.addEventListener('click', () => {
-    fetch("/editreminders", {
+    let responce = await fetch("/editreminders", {
         method:"PUT",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
             editReminder: {"user_id" : 1234, "id_reminder": 70, "reminder":"the old reminder is changed to this reminder"}
         })
     })
-}
-)
+
+    let result = await responce.json()
+    console.table(result)
+
+})
+
 
 
 
 deletereminder.addEventListener('click', () => {
-    fetch("/deletereminders", {
+    let responce = await fetch("/deletereminders", {
         method:"DELETE",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
             deleteReminder: {"user_id" : 1234, "reminder_id": 70 }
         })
     })
-}
+
+    let result = await responce.json()
+    console.table(result)
+})
+
+
+
+readReminder.addEventListener('click', () => {
+
+    let response = await fetch(`http://localhost:3000/readreminder?user_id=3`)
+    let data = await response.json()
+
+    console.log(`returned data from usr id 3 , readreminder is  ${data}`)
+
+    }
 )
 
 
 
-getreminder.addEventListener('click', () => {
-    fetch("/getreminder", {
+register.addEventListener('click', () => {
+    let responce = await fetch("/register", {
         method:"POST",
         headers: { "content-type" : "application/json" },
-        body: JSON.stringify({
-            readReminder: {"user_id" : 1234 }
+        body: JSON.stringify(
+            {addUser: {"username" : "bob", "email" : "bob@hoskins.com" }
         })
     })
-}
-)
 
-
-
-register.addEventListener('click', test_addUser = () => {
-    fetch("/register", {
-        method:"POST",
-        headers: { "content-type" : "application/json" },
-        body: JSON.stringify({
-            addUser: {"username" : "bob", "email" : "bob@hoskins.com" }
-        })
-    })
+    let result = await responce.json()
+    console.table(result)
 }
 )
 
