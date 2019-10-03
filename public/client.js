@@ -7,8 +7,8 @@ const display = document.getElementById('display')
 
 const register= document.getElementById('register')
 const signin = document.getElementById('signin')
-const getreminder = document.getElementById('getreminder')
-const addreminder =document.getElementById('addreminder')
+const readreminder = document.getElementById('getreminder')
+const addreminder = document.getElementById('addreminder')
 const deletereminder = document.getElementById('deletereminder')
 const editreminder = document.getElementById('editreminder')
 
@@ -17,8 +17,8 @@ const editreminder = document.getElementById('editreminder')
 
 
 
-addreminder.addEventListener('click', () => {
-    let responce = await fetch("/addreminders",{
+addreminder.addEventListener('click', async () => {
+    let response = await fetch("/addreminders",{
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
@@ -27,15 +27,15 @@ addreminder.addEventListener('click', () => {
         })
     })
 
-    let result = await responce.json()
+    let result = await response.json()
     console.log(result)
 
 })
 
 
 
-signin.addEventListener('click', () => {
-    let responce = await fetch("/signin", {
+signin.addEventListener('click', async () => {
+    let response = await fetch("/signin", {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
@@ -43,13 +43,14 @@ signin.addEventListener('click', () => {
         })
     })
 
-    let result = await responce.json()
+    let result = await response.json()
+    console.log("The result from signin is:")
     console.log(result)
 })
 
 
-editreminder.addEventListener('click', () => {
-    let responce = await fetch("/editreminders", {
+editreminder.addEventListener('click', async () => {
+    let response = await fetch("/editreminders", {
         method:"PUT",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
@@ -57,7 +58,7 @@ editreminder.addEventListener('click', () => {
         })
     })
 
-    let result = await responce.json()
+    let result = await response.json()
     console.table(result)
 
 })
@@ -65,8 +66,8 @@ editreminder.addEventListener('click', () => {
 
 
 
-deletereminder.addEventListener('click', () => {
-    let responce = await fetch("/deletereminders", {
+deletereminder.addEventListener('click', async () => {
+    let response = await fetch("/deletereminders", {
         method:"DELETE",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
@@ -74,15 +75,15 @@ deletereminder.addEventListener('click', () => {
         })
     })
 
-    let result = await responce.json()
+    let result = await response.json()
     console.table(result)
 })
 
 
 
-readReminder.addEventListener('click', () => {
+readreminder.addEventListener('click', async () => {
 
-    let response = await fetch(`http://localhost:3000/readreminder?user_id=3`)
+    let response = await fetch(`/readreminder?user_id=3`)
     let data = await response.json()
 
     console.log(`returned data from usr id 3 , readreminder is  ${data}`)
@@ -92,8 +93,8 @@ readReminder.addEventListener('click', () => {
 
 
 
-register.addEventListener('click', () => {
-    let responce = await fetch("/register", {
+register.addEventListener('click', async () => {
+    let response = await fetch("/register", {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify(
@@ -101,7 +102,7 @@ register.addEventListener('click', () => {
         })
     })
 
-    let result = await responce.json()
+    let result = await response.json()
     console.table(result)
 }
 )

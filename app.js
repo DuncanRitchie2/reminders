@@ -18,7 +18,7 @@ const promisifiedQuery = promisify(connection.query).bind(connection)
 const readReminder = async () => {
     try {
 
-        // This is used when adding, editing or deleting a reminder
+        // This is used after adding, editing or deleting a reminder
         // Should read all reminders of the user from sql and 
         // send the entire list to client
 
@@ -62,7 +62,7 @@ const isUserRegistered = async (data) => {
 
     } catch (error) {
         console.log('is User Registered error')
-        console.log(error.sqlMessage)
+        console.log('The error message is '+error.sqlMessage)
     }
 
     connection.end()
