@@ -15,7 +15,7 @@ const promisifiedQuery = promisify(connection.query).bind(connection)
 
 
 // Read reminders
-const readReminder = async () => {
+const readReminder = async (user_id) => {
     try {
 
         // This is used after adding, editing or deleting a reminder
@@ -23,7 +23,7 @@ const readReminder = async () => {
         // send the entire list to client
 
         //Mysql Query
-        const queryString = "SELECT reminder FROM users JOIN reminders ON users.id=reminders.user_id WHERE user_id=1;"
+        const queryString = `SELECT reminder FROM users JOIN reminders ON users.id=reminders.user_id WHERE user_id=${user_id};`
         let data = await promisifiedQuery(queryString)
 
         console.log('read Reminder SQL query')
