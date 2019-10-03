@@ -21,9 +21,9 @@ app.use(bodyParser.json())
 
 
 // GET   /readreminder
-app.post("/readreminder", async (req,res) => {
-console.log(req.body)
-    const data = await readReminder()
+app.get("/readreminder", async (req,res) => {
+    console.log(req.body)
+    const data = await readReminder(req.body.user_id)
 
     console.log(data)
     res.send(data)
@@ -40,7 +40,7 @@ app.post("/register", async (req,res) => {
 
 
 // GET   /signin
-app.post("/signin", async (req,res) => {
+app.get("/signin", async (req,res) => {
 
     const data = await isUserRegistered(req.body.isUserRegistered)
     console.log(data)  // returns id of user or false
@@ -53,6 +53,8 @@ app.post("/addreminders", async (req,res) => {
 
     const data = addReminder(req.body.addReminder)
     console.log(data)
+
+    // We may want to send a part of the data, not all.
     res.send(data)
 })
 

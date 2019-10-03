@@ -12,6 +12,8 @@ const addreminder = document.getElementById('addreminder')
 const deletereminder = document.getElementById('deletereminder')
 const editreminder = document.getElementById('editreminder')
 
+let user_id = 3;
+
 //  ******  TOO MANY ENDPOINTS!!!!
 
 
@@ -34,19 +36,19 @@ addreminder.addEventListener('click', async () => {
 
 
 
-signin.addEventListener('click', async () => {
-    let response = await fetch("/signin", {
-        method:"POST",
-        headers: { "content-type" : "application/json" },
-        body: JSON.stringify({
-            isUserRegistered: {"username" : "foo bar name"}
-        })
-    })
 
-    let result = await response.json()
-    console.log("The result from signin is:")
-    console.log(result)
-})
+
+signin.addEventListener('click', async () => {
+
+    let response = await fetch(`/signin?username=${username}`)
+    let data = await response.json()
+    // 
+    console.log(`sign in username ${data}`)
+    // should get a user_id back
+    }
+)
+
+
 
 
 editreminder.addEventListener('click', async () => {
@@ -83,9 +85,9 @@ deletereminder.addEventListener('click', async () => {
 
 readreminder.addEventListener('click', async () => {
 
-    let response = await fetch(`/readreminder?user_id=3`)
+    let response = await fetch(`/readreminder?user_id=${user_id}`)
     let data = await response.json()
-
+    // reload local reminders list
     console.log(`returned data from usr id 3 , readreminder is  ${data}`)
 
     }
