@@ -14,6 +14,8 @@ const signInButton2 = document.getElementById('in1')
 const signUpButton2 = document.getElementById('up1')
 const addReminderButton = document.getElementById('new-reminder-submit')
 const deleteReminderButtons = document.getElementsByClassName('reminder-delete-button')
+const numOfUser = document.getElementById('num')
+const editreminder = document.getElementById('editreminder')
 const reminderInputs = document.getElementsByClassName('reminder-input')
 
 let user_id = 3;
@@ -21,6 +23,13 @@ let user_id = 3;
 
 
 // CLIENT-SIDE FUNCTIONS
+
+const getTotal = async () => {
+    let data = await fetch("http://localhost:3019/total");
+    let response = await data.json();
+    numOfUser.textContent = response.total
+}
+getTotal();
 
 const signIn = async () => {
     let response = await fetch(`/signin?username=${username}`)
@@ -35,6 +44,7 @@ const readReminders = async () => {
     // reload local reminders list
     console.log(`returned data from usr id 3 , readreminder is  ${data}`)
 }
+
 
 const addReminder = async () => {
     console.log("Adding a reminder!")

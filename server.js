@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 // Pull in methods form app.js
-const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder} = require('./app')
+const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder,runTotal} = require('./app')
 
 const app = express()
 
@@ -17,6 +17,15 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.get("/total", async (req, res) =>{
+    const total = await runTotal();
+
+    console.log(total[0].num);
+
+    res.send({
+        total:total[0].num
+    });
+});
 
 
 

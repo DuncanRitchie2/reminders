@@ -2,16 +2,25 @@ const mysql = require('mysql')
 const { promisify } = require('util')
 
 
-
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "StEfAn20192792",
     database: "reminder_app"
 })
 
 const promisifiedQuery = promisify(connection.query).bind(connection)
 
+// gets total number of users
+const runTotal = async () =>{
+    try{
+        let total = await promisifiedQuery('SELECT count(*) as num FROM users');
+        return(total)
+    } catch (error) {
+        console.log(error.sqlMessage);
+    }
+    connection.end()
+}
 
 
 // Read reminders
@@ -219,6 +228,8 @@ const deleteReminder = async (deleteReminder) => {
 // readReminder()
 
 
+
+
 module.exports = {
 
     readReminder,
@@ -226,8 +237,8 @@ module.exports = {
     addReminder,
     addUser,
     editReminder,
-    deleteReminder
-
+    deleteReminder,
+    runTotal
 }
 
 
