@@ -14,12 +14,12 @@ html {
 }
 
 body{
-    /* background-color: #f6f6f6; */
     background-color: var(--bkgd-color);
-    font-size: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 .wrapper{
@@ -52,6 +52,11 @@ input{
     width: 100%;
     font-size: 150%;
     color: var(--highlight-color);
+    background-color: #274e9b
+}
+
+.index-head{
+    color: #f5b32f;
 }
 
 #button-cont{
@@ -88,6 +93,7 @@ input{
     height: 100vh;
     font-size: 200%;
     color: var(--highlight-color);
+    background-color: #274e9b;
 }
 
 .enter-cont{
@@ -98,10 +104,11 @@ input{
 
 #enter{
     height: 100%;
-    font-size: 150%;
+    font-size: 100%;
     background-color: transparent;
     color: var(--bkgd-color);
     border: var(--highlight-color) solid 2px;
+    margin: 0;
 }
 
 #enter:hover{
@@ -123,14 +130,16 @@ input{
     height: 100vh;
     font-size: 200%;
     color: var(--highlight-color);
+    background-color: #274e9b;
 }
 
 #submit{
     height: 100%;
-    font-size: 150%;
+    font-size: 100%;
     background-color: transparent;
     color: var(--bkgd-color);
     border: var(--highlight-color) solid 2px;
+    margin: 0;
 }
 
 #submit:hover{
@@ -142,16 +151,6 @@ input{
     transform: translateY(3px);
 }
 
-
-
-body {
-    height: 100%;
-    background-color: var(--bkgd-color);
-    color: var(--body-color);
-    padding: 0;
-    margin: 0;
-    display: flex;
-}
 
 main {
     padding: 12px 12px 60px;
