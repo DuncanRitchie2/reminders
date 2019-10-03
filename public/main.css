@@ -6,7 +6,7 @@ body{
 }
 
 input{
-    font-size: 150%;
+    font-size: 100%;
     margin: 1%;
 }
 
@@ -18,7 +18,8 @@ input{
     align-items: center;
     justify-content: center;
     height: 100vh;
-    font-size: 200%;
+    width: 100%;
+    font-size: 150%;
     color: #f5b324;
 }
 
