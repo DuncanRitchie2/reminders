@@ -18,16 +18,18 @@ const promisifiedQuery = promisify(connection.query).bind(connection)
 const readReminder = async (user_id) => {
     try {
 
+        // user_id =3
+
         // This is used after adding, editing or deleting a reminder
         // Should read all reminders of the user from sql and 
         // send the entire list to client
 
         //Mysql Query
-        const queryString = `SELECT reminder FROM users JOIN reminders ON users.id=reminders.user_id WHERE user_id=${user_id};`
+        const queryString = `SELECT reminders.id, reminder FROM reminders JOIN users ON users.id=reminders.user_id WHERE user_id=${user_id};`
         let data = await promisifiedQuery(queryString)
 
         console.log('read Reminder SQL query')
-        console.log(data)
+        console.log(data) // returns and array of [{ id: 6, reminder: 'blah reminders' },{ id: 44, reminder: 'hello world' },{ id: 55, reminder: 'walk dog' }]
         return(data)
 
 
@@ -82,19 +84,20 @@ const isUserRegistered = async (usernameGiven) => {
 
 
 //test
-isUserRegistered()
+// isUserRegistered()
 
 
 // Add a reminder
-const addReminder = async () => {
+const addReminder = async (addReminder) => {
     try {
+        // addReminder = {"user_id":3, "reminder": "adding a test reminder ********"}
+        let user_id = addReminder.user_id
+        let reminder = addReminder.reminder
         // Mysql Query
-        // const queryString = "INSERT INTO reminders(user_id,reminder) VALUES (user_id,newreminder);"
-        const queryString = "INSERT INTO reminders(user_id,reminder) VALUES (2,'test test test test test test');"
+        const queryString = `INSERT INTO reminders(user_id,reminder) VALUES ('${user_id}','${reminder}');`
         let data = await promisifiedQuery(queryString)
 
         console.log('addReminder SQL query')
-        return(data)
 
 
     } catch (error) {
@@ -111,12 +114,13 @@ const addReminder = async () => {
 // readReminder()
 
 
-const addUser = async () => {
+const addUser = async (addUser) => {
     try {
-
+        // addUser = {username:'fgggggggggg', email:'pppppppppp@ee.com'}
+        let newUserName = addUser.username
+        let newEmail = addUser.email
          //Mysql Query
-        const queryString = `INSERT INTO users (username, email) VALUES ('xxxxxxxxxxxx', 'foo@barbar.com');`
-        // const queryString = `INSERT INTO users (username) VALUES ('NEWusername');`
+        const queryString = `INSERT INTO users (username, email) VALUES ('${newUserName}', '${newEmail}');`
         let data = await promisifiedQuery(queryString)
 
         // addUser:{"username" : "bob", "email" : "bob@hoskins.com" }
@@ -124,8 +128,8 @@ const addUser = async () => {
         // server should send this user_id to client 
         
         console.log('Add user via SQL query')
-        console.log(data)
-        // return(data)
+        console.log(data.affectedRows)
+        return(data.affectedRows)
 
 
     } catch (error) {
@@ -137,21 +141,25 @@ const addUser = async () => {
 }
 
 // test
-addUser()
+// addUser()
 
 
-const editReminder = async () => {
+const editReminder = async (editReminder) => {
     try {
 
+        let editReminder = {"user_id" : 3, "reminder_id": 10, "reminder":"Duncan is ace!"}
 
-        // editReminder:{"user_id" : 1234, "reminder_id": 30, "reminder":"this is new edited reminder"}
+        let user_id = editReminder.user_id
+        let reminder_id = editReminder.reminder_id
+        let reminder = editReminder.reminder
+
         // When sql edits a reminder, given only small text database presently
         // server should just re-send the users entire reminder list when query completed
         // this is a 'readReminder' sql query
 
         // Mysql Query
         // const queryString = "UPDATE reminders set reminder= newReminder where id=? && user_id=?;"
-        const queryString = "UPDATE reminders set reminder='The rain in Spain' where id=1 && user_id=1;"
+        const queryString = `UPDATE reminders set reminder='${reminder}' where id=${reminder_id} && user_id=${user_id};`
         let data = await promisifiedQuery(queryString)
         
         console.log(data)
@@ -175,25 +183,25 @@ const editReminder = async () => {
 
 
 // Delete a reminder
-const deleteReminder = async () => {
+const deleteReminder = async (deleteReminder) => {
     try {
 
+        let user_id = deleteReminder.user_id
+        let reminder_id = deleteReminder.reminder_id
 
         // deleteReminder:{"user_id" : 1234, "reminder_id": 70 }
+
         // When sql deletes reminder, given only small text database presently
         // server should just re-send the users entire reminder list when query completed
         // this is a 'readReminder' sql query
 
         // Mysql Query
-        // const queryString = "DELETE FROM reminders WHERE id=? && user_id=?;"
-        const queryString = "DELETE FROM reminders WHERE id=1 && user_id=1;"
+        
+        const queryString = `DELETE FROM reminders WHERE id=${reminder_id} && user_id=${user_id};`
         let data = await promisifiedQuery(queryString)
         
-
         console.log('delete reminder via SQL query')
-
         console.log(data)
-        return(data)
 
 
     } catch (error) {

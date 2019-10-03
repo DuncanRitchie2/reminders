@@ -24,7 +24,7 @@ addreminder.addEventListener('click', async () => {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
-            // addReminder: {"user_id":1234, "reminder": "adding a test reminder"}
+            
             addReminder: {"user_id":1234, "reminder": "adding a test reminder"}
         })
     })
