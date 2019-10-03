@@ -21,7 +21,7 @@ const remindersContainer = document.getElementById('reminders-container')
 const reminderInputs = document.getElementsByClassName('reminder-input')
 const noRemindersContainer = document.getElementById('no-reminders-container')
 
-let user_id = 1;
+let user_id = 2;
 
 
 
@@ -87,7 +87,6 @@ const displayReminders = (reminderObjects) => {
             reminderInput.type = reminderObject.type = "text";
 
             reminderDate.className = "reminder-date";
-            console.log(reminderObject.date_added);
             reminderDate.value = reminderObject.date_added.substr(0,10);
             reminderDate.type = reminderObject.type = "date";
 
