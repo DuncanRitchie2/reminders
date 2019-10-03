@@ -1,3 +1,6 @@
+
+/* Affects entire portfolio */
+
 html {
     height: 100%;
     --bkgd-color: #f6f6f6;
@@ -10,6 +13,119 @@ html {
     --button-size: 11px;
     font-family: 'Gilroy Light', 'Gilroy', 'Helvetica', sans-serif;
 }
+
+body{
+    /* background-color: #f6f6f6; */
+    background-color: var(--bkgd-color);
+}
+
+input{
+    font-size: 100%;
+    margin: 1%;
+}
+
+/* SPLASH PAGE */
+
+#sign-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    font-size: 150%;
+    color: #f5b324;
+}
+
+#button-cont{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.open-button{
+    background-color: #274E9B;
+    color: white;
+    width: 45%;
+    font-size: 150%;
+    border: 2px solid #f5b324;
+}
+
+.open-button:hover{
+    background-color: #f5b324;
+    color: #274E9B;
+}
+
+.open-button:active{
+    transform: translateY(3px);
+}
+
+/* SIGN PAGE */
+
+#signIn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 200%;
+    color: #f5b324;
+}
+
+.enter-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#enter{
+    height: 100%;
+    font-size: 150%;
+    background-color: transparent;
+    color: white;
+    border: #f5b324 solid 2px;
+}
+
+#enter:hover{
+    background-color: #f5b324;
+    color: #274E9B;
+}
+
+#enter:active{
+    transform: translateY(3px);
+}
+
+/* SIGN UP PAGE */
+
+#signUp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 200%;
+    color: #f5b324;
+}
+
+#submit{
+    height: 100%;
+    font-size: 150%;
+    background-color: transparent;
+    color: white;
+    border: #f5b324 solid 2px;
+}
+
+#submit:hover{
+    background-color: #f5b324;
+    color: #274E9B;
+}
+
+#submit:active{
+    transform: translateY(3px);
+}
+
+
 
 body {
     height: 100%;
@@ -88,4 +204,40 @@ footer {
 footer p {
     width: calc(100% - 24px);
     text-align: center;
+}
+
+@media only screen and (max-width:700px){
+    input{
+        font-size: 100%;
+    }
+
+    #sign-cont{
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .enter-cont{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #signIn{
+        font-size: 100%;
+        text-align: center;
+    }
+
+    #enter{
+        font-size: 100%;
+    }
+
+    #signUp{
+        font-size: 100%;
+        text-align: center;
+    }
+    
+
+    #submit{
+        font-size: 100%;
+    }
 }
