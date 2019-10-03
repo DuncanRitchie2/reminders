@@ -11,13 +11,18 @@ const readreminder = document.getElementById('getreminder')
 const addreminder = document.getElementById('new-reminder-submit')
 const deleteReminderButtons = document.getElementsByClassName('reminder-delete-button')
 const editreminder = document.getElementById('editreminder')
+const numOfUser = document.getElementById('num')
 
 let user_id = 3;
 
 //  ******  TOO MANY ENDPOINTS!!!!
 
-
-
+const getTotal = async () => {
+    let data = await fetch("http://localhost:3019/total");
+    let response = await data.json();
+    numOfUser.textContent = response.total
+}
+getTotal();
 
 addreminder.addEventListener('click', async () => {
     console.log("Adding a reminder!")
