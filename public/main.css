@@ -151,6 +151,8 @@ input{
     transform: translateY(3px);
 }
 
+/* CSS for the dashboard */
+
 
 main {
     padding: 12px 12px 60px;
@@ -252,7 +254,6 @@ footer p {
         text-align: center;
     }
     
-
     #submit{
         font-size: 100%;
     }
