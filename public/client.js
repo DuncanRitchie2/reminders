@@ -22,6 +22,19 @@ let user_id = 3;
 
 // CLIENT-SIDE FUNCTIONS
 
+const signUp = async () => {
+    let response = await fetch("/register", {
+        method:"POST",
+        headers: { "content-type" : "application/json" },
+        body: JSON.stringify(
+            {addUser: {"username" : "bob", "email" : "bob@hoskins.com" }
+        })
+    })
+
+    let result = await response.json()
+    console.table(result)
+}
+
 const signIn = async () => {
     let response = await fetch(`/signin?username=${username}`)
     let data = await response.json()
@@ -51,13 +64,13 @@ const addReminder = async () => {
     console.log(result)
 }
 
-const editReminder = async () => {
+const editReminder = async (id) => {
     console.log("Editing a reminder!")
     let response = await fetch("/editreminders", {
         method:"PUT",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
-            editReminder: {"user_id" : 1234, "id_reminder": 70, "reminder":"the old reminder is changed to this reminder"}
+            editReminder: {"user_id" : user_id, "id_reminder": id, "reminder": "the old reminder is changed to this reminder"}
         })
     })
 
@@ -65,13 +78,13 @@ const editReminder = async () => {
     console.table(result)
 }
 
-const deleteReminder = async () => {
+const deleteReminder = async (id) => {
     console.log("Deleting a reminder!")
     let response = await fetch("/deletereminders", {
         method:"DELETE",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
-            deleteReminder: {"user_id" : 1234, "reminder_id": 70 }
+            deleteReminder: {"user_id" : user_id, "reminder_id": id}
         })
     })
 
@@ -107,16 +120,5 @@ for (let i = 0; i < deleteReminderButtons.length; i++) {
 
 
 if (register) {
-    register.addEventListener('click', async () => {
-        let response = await fetch("/register", {
-            method:"POST",
-            headers: { "content-type" : "application/json" },
-            body: JSON.stringify(
-                {addUser: {"username" : "bob", "email" : "bob@hoskins.com" }
-            })
-        })
-
-        let result = await response.json()
-        console.table(result)
-    })
+    register.addEventListener('click', signUp)
 }
