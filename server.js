@@ -32,7 +32,7 @@ app.get("/total", async (req, res) =>{
 // GET   /readreminder
 app.get("/readreminder", async (req,res) => {
     console.log(req.body)
-    const data = await readReminder(req.body.user_id)
+    const data = await readReminder(req.query.user_id)
     console.log(data)
     res.send(data)  // returns an array of [{reminder: 'aaaaa'},{reminder:'bbbbbb'},{reminder:'ccccccc'}]
 

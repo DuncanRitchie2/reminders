@@ -16,9 +16,12 @@ const addReminderButton = document.getElementById('new-reminder-submit')
 const deleteReminderButtons = document.getElementsByClassName('reminder-delete-button')
 const numOfUser = document.getElementById('num')
 const editreminder = document.getElementById('editreminder')
-const reminderInputs = document.getElementsByClassName('reminder-input')
 
-let user_id = 3;
+const remindersContainer = document.getElementById('reminders-container')
+const reminderInputs = document.getElementsByClassName('reminder-input')
+const noRemindersContainer = document.getElementById('no-reminders-container')
+
+let user_id = 2;
 
 
 
@@ -44,7 +47,10 @@ const getTotal = async () => {
     numOfUser.textContent = response.total
 }
 
-getTotal();
+if (numOfUser) {
+    getTotal();
+}
+
 
 const signIn = async () => {
     let response = await fetch(`/signin?username=${username}`)
@@ -53,13 +59,66 @@ const signIn = async () => {
     // should get a user_id back
 }
 
-const readReminders = async () => {
-    let response = await fetch(`/readreminder?user_id=${user_id}`)
-    let data = await response.json()
-    // reload local reminders list
-    console.log(`returned data from usr id 3 , readreminder is  ${data}`)
+const displayReminders = (reminderObjects) => {
+    remindersContainer.innerHTML = "";
+
+    // If reminders are returned, we create DOM elements for each of them, and we hide the no-reminders-container div.
+    if (reminderObjects[0]) {
+        noRemindersContainer.style.display = "none";
+
+        reminderObjects.map((reminderObject,i) => {
+
+            // This is the HTML we are producing:
+                // <div class="reminder-container">
+                //     <input class="reminder-input" value="Buy milk" type="text"/>
+                //     <input class="reminder-date" value="2019-10-01" type="date" />
+                //     <button class="reminder-delete-button" key=1>Delete</button>
+                // </div>
+
+            let div = document.createElement("div");
+            div.className = "reminder-container";
+
+            let reminderInput = document.createElement("input");
+            let reminderDate = document.createElement("input");
+            let reminderDeleteButton = document.createElement("button");
+
+            reminderInput.className = "reminder-input";
+            reminderInput.value = reminderObject.reminder;
+            reminderInput.type = reminderObject.type = "text";
+
+            reminderDate.className = "reminder-date";
+            reminderDate.value = reminderObject.date_added.substr(0,10);
+            reminderDate.type = reminderObject.type = "date";
+
+            reminderDeleteButton.className = "reminder-delete-button";
+            reminderDeleteButton.key = i;
+            reminderDeleteButton.textContent = "Delete";
+
+            div.appendChild(reminderInput);
+            div.appendChild(reminderDate);
+            div.appendChild(reminderDeleteButton);
+
+            console.log(div)
+            remindersContainer.appendChild(div);
+        })
+    }
+
+    // If there are no reminders, display no-reminders-container div.
+    else {
+        noRemindersContainer.style.display = "initial";
+    }
+    
 }
 
+const readReminders = async () => {
+    console.log("Reading reminders!")
+    let response = await fetch(`/readreminder?user_id=${user_id}`)
+    let data = await response.json()
+    
+    console.log(`returned data from user_id 3, readreminder is ${data}`)
+
+    displayReminders(data)
+}
 
 const addReminder = async () => {
     console.log("Adding a reminder!")
@@ -131,4 +190,9 @@ for (let i = 0; i < deleteReminderButtons.length; i++) {
 
 if (register) {
     register.addEventListener('click', signUp)
+}
+
+if (remindersContainer) {
+    console.log("This page has a reminder-container!")
+    readReminders()
 }
