@@ -22,6 +22,7 @@ let user_id = 3;
 
 
 
+
 // CLIENT-SIDE FUNCTIONS
 
 const signUp = async () => {
@@ -120,15 +121,13 @@ if (reminderInputs[0]) {
     }
 }
 
-addReminderButton.addEventListener('click', addReminder)
-
+if (addReminderButton) {
+    addReminderButton.addEventListener('click', addReminder)
+}
 
 for (let i = 0; i < deleteReminderButtons.length; i++) {
     deleteReminderButtons[i].addEventListener('click', deleteReminder)
 }
-
-
-
 
 if (register) {
     register.addEventListener('click', signUp)
