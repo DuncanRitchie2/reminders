@@ -36,28 +36,39 @@ const readReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 // TEST
 // readReminder()
 
 // Check if the user is actually siged-up
-const isUserRegistered = async (data) => {
+
+const isUserRegistered = async (usernameGiven) => {
+    
     try {
-
-        // isUserRegistered:{"username" : "foo bar name"}
-        // If the user exists; send eg {"user_id":1234} to client
-        // Else user needs to sign on; send eg {"user_id":null} to client
-
-        console.log(data)
-
+        
+        console.log(usernameGiven)
+        
         //Mysql Query
-        const queryString = "SELECT * FROM users;"  //TEMP !!
+        const queryString = `SELECT id FROM users WHERE username='${usernameGiven}';`
+        
         let data = await promisifiedQuery(queryString)
 
-        console.log('is User Registered SQL query')
-        return(data)
+        console.log(`is ${usernameGiven} Registered SQL query`)
+        console.log(data[0])
+
+        if(data[0] !== undefined){
+            console.log(`user ${usernameGiven} given exists in database`)
+            console.log(data[0].id)
+            return data[0].id
+        }
+        else{
+            console.log('user dosnt exist in database, client needs to ask to register')
+            console.log(false)
+            return false
+        }
+    
 
 
     } catch (error) {
@@ -65,13 +76,14 @@ const isUserRegistered = async (data) => {
         console.log('The error message is '+error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
 
 //test
-// isUserRegistered({"username" : "foo bar name"})
+isUserRegistered()
+
 
 // Add a reminder
 const addReminder = async () => {
@@ -90,7 +102,7 @@ const addReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -102,14 +114,18 @@ const addReminder = async () => {
 const addUser = async () => {
     try {
 
+         //Mysql Query
+        const queryString = `INSERT INTO users (username, email) VALUES ('xxxxxxxxxxxx', 'foo@barbar.com');`
+        // const queryString = `INSERT INTO users (username) VALUES ('NEWusername');`
+        let data = await promisifiedQuery(queryString)
 
         // addUser:{"username" : "bob", "email" : "bob@hoskins.com" }
         // Sql should add new user and give back a user_id
-        // server should send this user_id to client eg. {"user_id" :1234}
+        // server should send this user_id to client 
         
-        let data = {"user_id" :1234}
         console.log('Add user via SQL query')
-        return(data)
+        console.log(data)
+        // return(data)
 
 
     } catch (error) {
@@ -117,9 +133,11 @@ const addUser = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
+// test
+addUser()
 
 
 const editReminder = async () => {
@@ -147,7 +165,7 @@ const editReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 
@@ -183,7 +201,7 @@ const deleteReminder = async () => {
         console.log(error.sqlMessage)
     }
 
-    connection.end()
+    // connection.end()
 }
 
 

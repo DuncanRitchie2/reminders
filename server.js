@@ -43,7 +43,7 @@ app.post("/register", async (req,res) => {
 app.post("/signin", async (req,res) => {
 
     const data = await isUserRegistered(req.body.isUserRegistered)
-    console.log(data)
+    console.log(data)  // returns id of user or false
     res.send(data)
 })
 
