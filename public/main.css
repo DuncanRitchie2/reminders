@@ -6,6 +6,8 @@ html {
     --highdark-color: #274e9b;
     --warning-color: #d32f2f;
     --body-size: 16px;
+    --date-size: 14px;
+    --button-size: 11px;
     font-family: 'Gilroy Light', 'Gilroy', 'Helvetica', sans-serif;
 }
 
@@ -22,11 +24,12 @@ main {
     padding: 12px 12px 60px;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 88%;
     max-width: calc(100% - 24px);
 }
 
 h1 {
+    margin-top: calc(2vh + 12px);
     color: var(--highdark-color);
 }
 
@@ -52,9 +55,18 @@ p {
     padding: 3px 6px;
 }
 
+#dashboard input[type=text] {
+    margin-right: 3px;
+}
+
+#dashboard input[type=date] {
+    font-size: var(--date-size);
+}
+
 #dashboard button {
     font-family: inherit;
     font-weight: 600;
+    font-size: var(--button-size);
     color: var(--warning-color);
     padding: 9px;
     width: 5em;
@@ -71,4 +83,9 @@ footer {
     background-color: var(--highlight-color);
     display: flex;
     justify-content: space-evenly;
+}
+
+footer p {
+    width: calc(100% - 24px);
+    text-align: center;
 }
