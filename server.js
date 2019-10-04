@@ -20,8 +20,6 @@ app.use(bodyParser.json())
 app.get("/total", async (req, res) =>{
     const total = await runTotal();
 
-    console.log(total[0].num);
-
     res.send({
         total:total[0].num
     });
