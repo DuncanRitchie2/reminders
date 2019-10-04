@@ -20,7 +20,7 @@ const signUpButton=document.getElementById("sign-up-button");
 // const display = document.getElementById('display')
 
 // const register= document.getElementById('register')
-const usernameInput = document.getElementById('username-input')
+const usernameInput = document.getElementById('sign-in-username-input')
 // const signInButton1 = document.getElementById('in')
 // const signUpButton1 = document.getElementById('up')
 // const signInButton2 = document.getElementById('in1')
@@ -38,8 +38,8 @@ const reminderInputs = document.getElementsByClassName('reminder-input')
 const noRemindersContainer = document.getElementById('no-reminders-container')
 
 const submit=document.getElementById('submit')
-const inputEmail=document.getElementById('inputEmail')
-const inputUsername=document.getElementById('inputUsername')
+const inputEmail=document.getElementById('sign-up-email-input')
+const inputUsername=document.getElementById('sign-up-username-input')
 
 let user_id = 2;
 
