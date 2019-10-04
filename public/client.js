@@ -43,6 +43,11 @@ const signUp = async () => {
     console.table(result)
 }
 
+if (submit) {
+    submit.addEventListener("click",signUp);
+}
+
+
 const getTotal = async () => {
     let data = await fetch("http://localhost:3019/total");
     let response = await data.json();
@@ -100,12 +105,27 @@ const displayReminders = (reminderObjects) => {
                     }
                     console.log(editedReminderObject)
                     editReminder(editedReminderObject)
+                    // reminderInput.focus()
                 }
             })
 
             reminderDate.className = "reminder-date";
             reminderDate.value = (reminderObject.date_added ? reminderObject.date_added.substr(0,10) : "");
             reminderDate.type = reminderObject.type = "date";
+            reminderDate.addEventListener("keyup",(e)=>{
+                if (e.keyCode === 13) {
+                    console.log("You pressed enter!")
+                    const editedReminderObject = {
+                        user_id: user_id,
+                        reminder_id: reminderObject.id,
+                        reminder: reminderInput.value,
+                        date_added: reminderDate.value
+                    }
+                    console.log(editedReminderObject)
+                    editReminder(editedReminderObject)
+                    // reminderDate.focus();
+                }
+            })
 
             reminderDeleteButton.className = "reminder-delete-button";
             reminderDeleteButton.key = reminderObject.id;
