@@ -37,6 +37,10 @@ const remindersContainer = document.getElementById('reminders-container')
 const reminderInputs = document.getElementsByClassName('reminder-input')
 const noRemindersContainer = document.getElementById('no-reminders-container')
 
+const submit=document.getElementById('submit')
+const inputEmail=document.getElementById('inputEmail')
+const inputUsername=document.getElementById('inputUsername')
+
 let user_id = 2;
 
 
@@ -66,6 +70,8 @@ const signUp = async () => {
         headers: { "content-type" : "application/json" },
         body: JSON.stringify(
             {addUser: addUserObject
+
+            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }
         })
     })
 
@@ -78,6 +84,19 @@ const signUp = async () => {
     else {
         console.log("Signup failed!")
     }
+//    if (result.message == "ER_DUP_ENTRY"){
+//        alert('Error, username is taken')
+//    }
+    // console.table(result)
+// }
+
+// submit.addEventListener("click",signUp);
+
+//const getTotal = async () => {
+//    let data = await fetch("http://localhost:3019/total");
+//    let response = await data.json();
+//    numOfUser.textContent = response.total
+
 }
 
 if (signUpButton) {

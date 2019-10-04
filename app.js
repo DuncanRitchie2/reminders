@@ -144,7 +144,7 @@ const addUser = async (addUser) => {
 
     } catch (error) {
         console.log('Add user error')
-        console.log(error.sqlMessage)
+        return(error.code)
     }
 
     // connection.end()

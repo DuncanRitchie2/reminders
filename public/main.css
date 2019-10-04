@@ -69,6 +69,10 @@ input{
     margin: 36px 5vh 5vh 5vh;
 }
 
+#num{
+    color: #f6f6f6;
+}
+
 #button-cont{
     display: flex;
     flex-direction: row;
@@ -282,7 +286,7 @@ footer p {
         justify-content: space-around;
     }
 
-    #signIn{
+    #signInDiv{
         font-size: 100%;
         text-align: center;
     }
@@ -291,7 +295,7 @@ footer p {
         font-size: 100%;
     }
 
-    #signUp{
+    #signUpDiv{
         font-size: 100%;
         text-align: center;
     }
