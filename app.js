@@ -5,7 +5,7 @@ const { promisify } = require('util')
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "StEfAn20192792",
+    password: "password",
     database: "reminder_app"
 })
 
@@ -34,7 +34,7 @@ const readReminder = async (user_id) => {
         // send the entire list to client
 
         //Mysql Query
-        const queryString = `SELECT reminders.id, reminder FROM reminders JOIN users ON users.id=reminders.user_id WHERE user_id=${user_id};`
+        const queryString = `SELECT reminders.id, reminder, date_added FROM reminders JOIN users ON users.id=reminders.user_id WHERE user_id=${user_id};`
         let data = await promisifiedQuery(queryString)
 
         console.log('read Reminder SQL query')

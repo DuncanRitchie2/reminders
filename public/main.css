@@ -7,6 +7,7 @@ html {
     --highlight-color: #f5b32f;
     --highdark-color: #274e9b;
     --warning-color: #d32f2f;
+    --darkerblue-color: #0b3386;
     --body-size: 16px;
     --date-size: 14px;
     --button-size: 11px;
@@ -20,6 +21,7 @@ body{
     justify-content: center;
     margin: 0;
     padding: 0;
+
 }
 
 .wrapper{
@@ -33,6 +35,7 @@ button {
     font-size: 1em;
     border: 1px solid var(--warning-color);
     margin-bottom: 1em;
+    font-family: inherit;
 }
 
 
@@ -48,7 +51,7 @@ input{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     font-size: 150%;
     color: var(--highlight-color);
@@ -57,6 +60,13 @@ input{
 
 .index-head{
     color: #f5b32f;
+    z-index: 100;
+    margin: 0 5vh 5vh 5vh;
+}
+
+.index-subhead{
+    z-index: 100;
+    margin: 36px 5vh 5vh 5vh;
 }
 
 #num{
@@ -76,6 +86,7 @@ input{
     width: 45%;
     font-size: 150%;
     border: 2px solid var(--highlight-color);
+    z-index: 100;
 }
 
 .open-button:hover{
@@ -87,17 +98,38 @@ input{
     transform: translateY(3px);
 }
 
-/* SIGN PAGE */
 
-#signIn{
+
+#pen{
+    position: absolute;
+    width: 70vw;
+    left: 20vw;
+    bottom: 15vw;
+    z-index: 0;
+}
+
+.penPath {
+    fill: var(--darkerblue-color);
+}
+
+
+
+
+/* SIGN IN PAGE */
+
+#signInDiv{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     font-size: 200%;
     color: var(--highlight-color);
-    background-color: #274e9b;
+    background-color: var(--highdark-color);
+}
+
+#signInDiv * {
+    z-index: 2;
 }
 
 .enter-cont{
@@ -126,7 +158,7 @@ input{
 
 /* SIGN UP PAGE */
 
-#signUp{
+#signUpDiv{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,7 +166,11 @@ input{
     height: 100vh;
     font-size: 200%;
     color: var(--highlight-color);
-    background-color: #274e9b;
+    background-color: var(--highdark-color);
+}
+
+#signUpDiv * {
+    z-index: 2;
 }
 
 #submit{
@@ -228,6 +264,12 @@ footer p {
     text-align: center;
 }
 
+
+
+
+
+
+
 @media only screen and (max-width:700px){
     input{
         font-size: 100%;
@@ -260,5 +302,6 @@ footer p {
     
     #submit{
         font-size: 100%;
+        margin: 1em 0 0 0 ;
     }
 }
