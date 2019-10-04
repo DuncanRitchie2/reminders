@@ -13,8 +13,8 @@ create table reminders(
 	id INT auto_increment PRIMARY KEY,
 	user_id INT,
 	reminder VARCHAR(100),
-	date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	foreign key (user_id) references users(id) 
+	date_added VARCHAR(10),
+	foreign key (user_id) references users(id)
 );
 
 INSERT INTO users (username,email) 
@@ -24,9 +24,9 @@ INSERT INTO users (username,email)
 	('inklingGirl','ink@kgmail.com'),
 	('ben','benjamin@gmail.com');
 
-INSERT INTO reminders (user_id,reminder) 
-	VALUES (1,'show all reminders'), (1,'did it work?'),
-	(2,'delete reminders'),(2,'example 1'),(2,'example 2'),
-	(3,'update reminders'), (3,'Hopefully it works'),
-	(4,'add reminders'),
-	(5,'final note');
+INSERT INTO reminders (user_id,reminder,date_added)
+	values (1,'show all reminders','2019-09-01'), (1,'did it work?','2019-09-01'),
+	(2,'delete reminders','2019-10-02'),(2,'example 1','2019-10-03'),(2,'example 2','2019-10-04'),
+	(3,'update reminders','2019-09-01'), (3,'Hopefully it works','2019-09-01'),
+	(4,'add reminders','2019-09-01'),
+	(5,'final note','2019-10-02');

@@ -99,11 +99,12 @@ const isUserRegistered = async (usernameGiven) => {
 // Add a reminder
 const addReminder = async (addReminder) => {
     try {
-        // addReminder = {"user_id":3, "reminder": "adding a test reminder ********"}
+        // addReminder = {"user_id":3, "reminder": "adding a test reminder ********", "date_added": "2019-10-04"}
         let user_id = addReminder.user_id
         let reminder = addReminder.reminder
+        let date_added = addReminder.date_added
         // Mysql Query
-        const queryString = `INSERT INTO reminders(user_id,reminder) VALUES ('${user_id}','${reminder}');`
+        const queryString = `INSERT INTO reminders(user_id,reminder,date_added) VALUES ('${user_id}','${reminder}','${date_added}');`
         let data = await promisifiedQuery(queryString)
 
         console.log('addReminder SQL query')
