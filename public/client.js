@@ -6,12 +6,26 @@ console.log("Hello from client.js!")
 
 // ASSIGN VARIABLES TO DOM ELEMENTS
 
+const signInFromSignUpButton=document.getElementById("sign-in-from-sign-up-button");
+const signUpFromSignInButton=document.getElementById("sign-up-from-sign-in-button");
+const signInFromHomeButton=document.getElementById("sign-in-from-home-button");
+const signUpFromHomeButton=document.getElementById("sign-up-from-home-button");
+const splash=document.getElementById('sign-cont');
+const signInDiv=document.getElementById("signInDiv");
+const signUpDiv=document.getElementById("signUpDiv");
+
+const signInButton=document.getElementById("sign-in-button");
+const signUpButton=document.getElementById("sign-up-button");
+
 const display = document.getElementById('display')
-const register= document.getElementById('register')
-const signInButton1 = document.getElementById('in')
-const signUpButton1 = document.getElementById('up')
-const signInButton2 = document.getElementById('in1')
-const signUpButton2 = document.getElementById('up1')
+
+// const register= document.getElementById('register')
+const usernameInput = document.getElementById('username-input')
+// const signInButton1 = document.getElementById('in')
+// const signUpButton1 = document.getElementById('up')
+// const signInButton2 = document.getElementById('in1')
+// const signUpButton2 = document.getElementById('up1')
+
 const addReminderInput = document.getElementById('new-reminder-input')
 const addReminderDate = document.getElementById('new-reminder-date')
 const addReminderButton = document.getElementById('new-reminder-submit')
@@ -30,23 +44,7 @@ let user_id = 2;
 
 // CLIENT-SIDE FUNCTIONS
 
-const signUp = async () => {
-    let response = await fetch("/register", {
-        method:"POST",
-        headers: { "content-type" : "application/json" },
-        body: JSON.stringify(
-            {addUser: {"username" : "bob", "email" : "bob@hoskins.com" }
-        })
-    })
-
-    let result = await response.json()
-    console.table(result)
-}
-
-if (submit) {
-    submit.addEventListener("click",signUp);
-}
-
+// Displaying the number of users on the splash page.
 
 const getTotal = async () => {
     let data = await fetch("http://localhost:3019/total");
@@ -58,12 +56,50 @@ if (numOfUser) {
     getTotal();
 }
 
+// Sign-up function
+
+const signUp = async () => {
+    const addUserObject = {"username" : "bob", "email" : "bob@hoskins.com"}
+
+    let response = await fetch("/register", {
+        method:"POST",
+        headers: { "content-type" : "application/json" },
+        body: JSON.stringify(
+            {addUser: addUserObject
+        })
+    })
+
+    let result = await response.json()
+    console.table(result)
+
+    if (result.message === "Added new user ok") {
+        console.log("Signup successful!")
+    }
+    else {
+        console.log("Signup failed!")
+    }
+}
+
+if (signUpButton) {
+    signUpButton.addEventListener("click",signUp);
+}
+
+// Sign-in function
 
 const signIn = async () => {
+    const username = usernameInput.value;
+
     let response = await fetch(`/signin?username=${username}`)
     let data = await response.json()
     console.log(`sign in username ${data}`)
     // should get a user_id back
+
+
+    // We need to enter user_id into local storage so that dashboard functions can access it.
+}
+
+if (signInButton) {
+    signInButton.addEventListener("click",signIn);
 }
 
 const displayReminders = (reminderObjects) => {
@@ -236,13 +272,13 @@ const deleteReminder = async (id) => {
 
 // ADD EVENT LISTENERS
 
-if (signInButton1) {
-    signInButton1.addEventListener('click', signIn)
-}
+// if (signInButton1) {
+//     signInButton1.addEventListener('click', signIn)
+// }
 
-if (signInButton2) {
-    signInButton2.addEventListener('click', signIn)
-}
+// if (signInButton2) {
+//     signInButton2.addEventListener('click', signIn)
+// }
 
 if (reminderInputs[0]) {
     for (let i = 0; i < reminderInputs.length; i++) {
@@ -258,11 +294,41 @@ for (let i = 0; i < deleteReminderButtons.length; i++) {
     deleteReminderButtons[i].addEventListener('click', deleteReminder)
 }
 
-if (register) {
-    register.addEventListener('click', signUp)
-}
+// if (register) {
+//     register.addEventListener('click', signUp)
+// }
 
 if (remindersContainer) {
     console.log("This page has a reminder-container!")
     readReminders()
 }
+
+
+// FUNCTIONS TOGGLING DIVS DISPLAYING ON INDEX.HTML
+
+signInDiv.style.display="none";
+signUpDiv.style.display="none";
+
+signInFromSignUpButton.addEventListener("click",()=>{
+    signInDiv.style.display="flex";
+    signUpDiv.style.display="none";
+    splash.style.display="none";
+})
+
+signUpFromSignInButton.addEventListener("click",()=>{
+    signUpDiv.style.display="flex";
+    signInDiv.style.display="none";
+    splash.style.display="none";
+})
+
+signInFromHomeButton.addEventListener("click",()=>{
+    signInDiv.style.display="flex";
+    signUpDiv.style.display="none";
+    splash.style.display="none";
+})
+
+signUpFromHomeButton.addEventListener("click",()=>{
+    signUpDiv.style.display="flex";
+    signInDiv.style.display="none";
+    splash.style.display="none";
+})

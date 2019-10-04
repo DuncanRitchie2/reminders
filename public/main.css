@@ -134,7 +134,7 @@ input{
     align-items: center;
 }
 
-#enter{
+#sign-in-button{
     height: 100%;
     font-size: 100%;
     background-color: transparent;
@@ -143,12 +143,12 @@ input{
     margin: 0;
 }
 
-#enter:hover{
+#sign-in-button:hover{
     background-color: var(--highlight-color);
     color: var(--highdark-color);
 }
 
-#enter:active{
+#sign-in-button:active{
     transform: translateY(3px);
 }
 
@@ -169,7 +169,7 @@ input{
     z-index: 2;
 }
 
-#submit{
+#sign-up-button{
     height: 100%;
     font-size: 100%;
     background-color: transparent;
@@ -178,12 +178,12 @@ input{
     margin: 0;
 }
 
-#submit:hover{
+#sign-up-button:hover{
     background-color: var(--highlight-color);
     color: var(--highdark-color);
 }
 
-#submit:active{
+#sign-up-button:active{
     transform: translateY(3px);
 }
 
@@ -287,7 +287,7 @@ footer p {
         text-align: center;
     }
 
-    #enter{
+    #sign-in-button{
         font-size: 100%;
     }
 
@@ -296,7 +296,7 @@ footer p {
         text-align: center;
     }
     
-    #submit{
+    #sign-up-button{
         font-size: 100%;
         margin: 1em 0 0 0 ;
     }
