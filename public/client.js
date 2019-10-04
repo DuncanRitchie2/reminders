@@ -17,7 +17,7 @@ const signUpDiv=document.getElementById("signUpDiv");
 const signInButton=document.getElementById("sign-in-button");
 const signUpButton=document.getElementById("sign-up-button");
 
-const display = document.getElementById('display')
+// const display = document.getElementById('display')
 
 // const register= document.getElementById('register')
 const usernameInput = document.getElementById('username-input')
