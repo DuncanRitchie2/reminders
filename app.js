@@ -155,13 +155,15 @@ const addUser = async (addUser) => {
 
 
 const editReminder = async (editReminder) => {
+
     try {
 
-        let editReminder = {"user_id" : 3, "reminder_id": 10, "reminder":"Duncan is ace!"}
+        // let editReminder = {"user_id" : 3, "reminder_id": 10, "reminder":"Duncan is ace!", "date_added": "2019-01-01"}
 
         let user_id = editReminder.user_id
         let reminder_id = editReminder.reminder_id
         let reminder = editReminder.reminder
+        let date_added = editReminder.date_added
 
         // When sql edits a reminder, given only small text database presently
         // server should just re-send the users entire reminder list when query completed
@@ -169,7 +171,8 @@ const editReminder = async (editReminder) => {
 
         // Mysql Query
         // const queryString = "UPDATE reminders set reminder= newReminder where id=? && user_id=?;"
-        const queryString = `UPDATE reminders set reminder='${reminder}' where id=${reminder_id} && user_id=${user_id};`
+        const queryString = `UPDATE reminders set reminder='${reminder}', date_added='${date_added}' where id=${reminder_id} && user_id=${user_id};`
+        // const queryString = `UPDATE reminders set reminder='Hello a third time', date_added='2002-01-01' where id=17 && user_id=2;`
         let data = await promisifiedQuery(queryString)
         
         console.log(data)

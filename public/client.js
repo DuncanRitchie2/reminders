@@ -89,6 +89,19 @@ const displayReminders = (reminderObjects) => {
             reminderInput.className = "reminder-input";
             reminderInput.value = reminderObject.reminder;
             reminderInput.type = reminderObject.type = "text";
+            reminderInput.addEventListener("keyup",(e)=>{
+                if (e.keyCode === 13) {
+                    console.log("You pressed enter!")
+                    const editedReminderObject = {
+                        user_id: user_id,
+                        reminder_id: reminderObject.id,
+                        reminder: reminderInput.value,
+                        date_added: reminderDate.value
+                    }
+                    console.log(editedReminderObject)
+                    editReminder(editedReminderObject)
+                }
+            })
 
             reminderDate.className = "reminder-date";
             reminderDate.value = (reminderObject.date_added ? reminderObject.date_added.substr(0,10) : "");
@@ -160,18 +173,19 @@ const addReminder = async (reminderObject) => {
     readReminders();
 }
 
-const editReminder = async (id) => {
+const editReminder = async (reminderObject) => {
     console.log("Editing a reminder!")
     let response = await fetch("/editreminders", {
         method:"PUT",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
-            editReminder: {"user_id" : user_id, "id_reminder": id, "reminder": "the old reminder is changed to this reminder"}
+            editReminder: {"user_id" : user_id, "reminder_id": reminderObject.reminder_id, "reminder": reminderObject.reminder, "date_added": reminderObject.date_added}
         })
     })
 
     let result = await response.json()
     console.table(result)
+    readReminders()
 }
 
 const deleteReminder = async (id) => {
