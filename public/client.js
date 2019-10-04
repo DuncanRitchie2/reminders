@@ -184,8 +184,13 @@ const editReminder = async (reminderObject) => {
     })
 
     let result = await response.json()
-    console.table(result)
-    readReminders()
+
+    if (result.message === "Edited reminder ok") {
+        readReminders()
+    }
+    else {
+        console.log("Editing failed!")
+    }
 }
 
 const deleteReminder = async (id) => {
