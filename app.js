@@ -99,11 +99,12 @@ const isUserRegistered = async (usernameGiven) => {
 // Add a reminder
 const addReminder = async (addReminder) => {
     try {
-        // addReminder = {"user_id":3, "reminder": "adding a test reminder ********"}
+        // addReminder = {"user_id":3, "reminder": "adding a test reminder ********", "date_added": "2019-10-04"}
         let user_id = addReminder.user_id
         let reminder = addReminder.reminder
+        let date_added = addReminder.date_added
         // Mysql Query
-        const queryString = `INSERT INTO reminders(user_id,reminder) VALUES ('${user_id}','${reminder}');`
+        const queryString = `INSERT INTO reminders(user_id,reminder,date_added) VALUES ('${user_id}','${reminder}','${date_added}');`
         let data = await promisifiedQuery(queryString)
 
         console.log('addReminder SQL query')
@@ -154,13 +155,15 @@ const addUser = async (addUser) => {
 
 
 const editReminder = async (editReminder) => {
+
     try {
 
-        let editReminder = {"user_id" : 3, "reminder_id": 10, "reminder":"Duncan is ace!"}
+        // let editReminder = {"user_id" : 3, "reminder_id": 10, "reminder":"Duncan is ace!", "date_added": "2019-01-01"}
 
         let user_id = editReminder.user_id
         let reminder_id = editReminder.reminder_id
         let reminder = editReminder.reminder
+        let date_added = editReminder.date_added
 
         // When sql edits a reminder, given only small text database presently
         // server should just re-send the users entire reminder list when query completed
@@ -168,7 +171,8 @@ const editReminder = async (editReminder) => {
 
         // Mysql Query
         // const queryString = "UPDATE reminders set reminder= newReminder where id=? && user_id=?;"
-        const queryString = `UPDATE reminders set reminder='${reminder}' where id=${reminder_id} && user_id=${user_id};`
+        const queryString = `UPDATE reminders set reminder='${reminder}', date_added='${date_added}' where id=${reminder_id} && user_id=${user_id};`
+        // const queryString = `UPDATE reminders set reminder='Hello a third time', date_added='2002-01-01' where id=17 && user_id=2;`
         let data = await promisifiedQuery(queryString)
         
         console.log(data)

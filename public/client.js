@@ -12,6 +12,8 @@ const signInButton1 = document.getElementById('in')
 const signUpButton1 = document.getElementById('up')
 const signInButton2 = document.getElementById('in1')
 const signUpButton2 = document.getElementById('up1')
+const addReminderInput = document.getElementById('new-reminder-input')
+const addReminderDate = document.getElementById('new-reminder-date')
 const addReminderButton = document.getElementById('new-reminder-submit')
 const deleteReminderButtons = document.getElementsByClassName('reminder-delete-button')
 const numOfUser = document.getElementById('num')
@@ -60,13 +62,15 @@ const signIn = async () => {
 }
 
 const displayReminders = (reminderObjects) => {
+    // Clear any pre-existing reminders.
     remindersContainer.innerHTML = "";
 
     // If reminders are returned, we create DOM elements for each of them, and we hide the no-reminders-container div.
     if (reminderObjects[0]) {
         noRemindersContainer.style.display = "none";
 
-        reminderObjects.map((reminderObject,i) => {
+        reminderObjects.map((reminderObject) => {
+            console.table(reminderObject);
 
             // This is the HTML we are producing:
                 // <div class="reminder-container">
@@ -85,14 +89,31 @@ const displayReminders = (reminderObjects) => {
             reminderInput.className = "reminder-input";
             reminderInput.value = reminderObject.reminder;
             reminderInput.type = reminderObject.type = "text";
+            reminderInput.addEventListener("keyup",(e)=>{
+                if (e.keyCode === 13) {
+                    console.log("You pressed enter!")
+                    const editedReminderObject = {
+                        user_id: user_id,
+                        reminder_id: reminderObject.id,
+                        reminder: reminderInput.value,
+                        date_added: reminderDate.value
+                    }
+                    console.log(editedReminderObject)
+                    editReminder(editedReminderObject)
+                }
+            })
 
             reminderDate.className = "reminder-date";
-            reminderDate.value = reminderObject.date_added.substr(0,10);
+            reminderDate.value = (reminderObject.date_added ? reminderObject.date_added.substr(0,10) : "");
             reminderDate.type = reminderObject.type = "date";
 
             reminderDeleteButton.className = "reminder-delete-button";
-            reminderDeleteButton.key = i;
+            reminderDeleteButton.key = reminderObject.id;
             reminderDeleteButton.textContent = "Delete";
+            reminderDeleteButton.addEventListener("click",() => {
+                console.log("Trying to delete!")
+                deleteReminder(reminderObject.id)
+            })
 
             div.appendChild(reminderInput);
             div.appendChild(reminderDate);
@@ -120,33 +141,56 @@ const readReminders = async () => {
     displayReminders(data)
 }
 
-const addReminder = async () => {
+const getNewReminderFromInput = () => {
+    if (addReminderInput.value) {
+        const reminderObject = {
+            "user_id": user_id, 
+            "reminder": addReminderInput.value, 
+            "date_added": addReminderDate.value
+        }
+        addReminderInput.value = ""
+        addReminderDate.value = ""
+        console.log(reminderObject)
+        addReminder(reminderObject)
+    }
+    else {
+        console.log("Please type a new reminder in!")
+    }
+}
+
+const addReminder = async (reminderObject) => {
     console.log("Adding a reminder!")
     let response = await fetch("/addreminders",{
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
-            
-            addReminder: {"user_id":1234, "reminder": "adding a test reminder"}
+            addReminder: reminderObject
         })
     })
 
     let result = await response.json()
     console.log(result)
+    readReminders();
 }
 
-const editReminder = async (id) => {
+const editReminder = async (reminderObject) => {
     console.log("Editing a reminder!")
     let response = await fetch("/editreminders", {
         method:"PUT",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify({
-            editReminder: {"user_id" : user_id, "id_reminder": id, "reminder": "the old reminder is changed to this reminder"}
+            editReminder: {"user_id" : user_id, "reminder_id": reminderObject.reminder_id, "reminder": reminderObject.reminder, "date_added": reminderObject.date_added}
         })
     })
 
     let result = await response.json()
-    console.table(result)
+
+    if (result.message === "Edited reminder ok") {
+        readReminders()
+    }
+    else {
+        console.log("Editing failed!")
+    }
 }
 
 const deleteReminder = async (id) => {
@@ -160,7 +204,13 @@ const deleteReminder = async (id) => {
     })
 
     let result = await response.json()
-    console.table(result)
+
+    if (result.message === "Deleted reminders ok") {
+        readReminders()
+    }
+    else {
+        console.log("Deleting failed!")
+    }
 }
 
 
@@ -181,7 +231,7 @@ if (reminderInputs[0]) {
 }
 
 if (addReminderButton) {
-    addReminderButton.addEventListener('click', addReminder)
+    addReminderButton.addEventListener('click', getNewReminderFromInput)
 }
 
 for (let i = 0; i < deleteReminderButtons.length; i++) {
