@@ -41,7 +41,7 @@ app.get("/readreminder", async (req,res) => {
 app.post("/register", async (req,res) => {
     const data = await addUser(req.body.addUser)   // addUser = {username:'fffffffff', email:'xxxxx@qqqq.com'}
     console.log(data) // 1 if row added
-    res.send({message: 'Added new user ok'})
+    res.send({message: data})
 })
 
 
