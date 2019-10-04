@@ -25,6 +25,8 @@ const submit=document.getElementById('submit')
 const inputEmail=document.getElementById('inputEmail')
 const inputUsername=document.getElementById('inputUsername')
 
+const enter=document.getElementById('enter')
+
 let user_id = 2;
 
 
@@ -42,7 +44,7 @@ const signUp = async () => {
     })
 
     let result = await response.json()
-    if (result.message = "ER_DUP_ENTRY"){
+    if (result.message == "ER_DUP_ENTRY"){
         alert('Error, username is taken')
     }
     // console.table(result)
