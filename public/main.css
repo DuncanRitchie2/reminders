@@ -45,6 +45,10 @@ input{
     margin: 1%;
 }
 
+#new-reminder-container h2 {
+    color: var(--highdark-color);
+}
+
 /* SPLASH PAGE */
 
 #sign-cont{
