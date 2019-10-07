@@ -118,7 +118,12 @@ const signIn = async () => {
     localStorage.setItem('reminders_user_id', data.id);
     console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
 
-    location.pathname = "/dashboard.html"
+    if (data.id) {
+        location.pathname = "/dashboard.html"
+    }
+    else {
+        alert('Username not recognised! Please check your username or sign up.')
+    }
 }
 
 if (signInButton) {
