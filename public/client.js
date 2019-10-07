@@ -41,7 +41,7 @@ const submit=document.getElementById('submit')
 const inputEmail=document.getElementById('sign-up-email-input')
 const inputUsername=document.getElementById('sign-up-username-input')
 
-let user_id = 2;
+let user_id = localStorage.getItem('reminders_user_id') || 2;
 
 
 
@@ -116,6 +116,8 @@ const signIn = async () => {
 
 
     // We need to enter user_id into local storage so that dashboard functions can access it.
+    localStorage.setItem('reminders_user_id', data.id);
+    console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
 }
 
 if (signInButton) {
@@ -123,6 +125,8 @@ if (signInButton) {
 }
 
 const displayReminders = (reminderObjects) => {
+    console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+
     // Clear any pre-existing reminders.
     remindersContainer.innerHTML = "";
 
