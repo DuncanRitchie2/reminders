@@ -47,10 +47,11 @@ app.post("/register", async (req,res) => {
 
 // GET   /signin
 app.get("/signin", async (req,res) => {
-
-    const data = await isUserRegistered(req.body.isUserRegistered)
+    console.log("req.query:")
+    console.table(req.query)
+    const data = await isUserRegistered(req.query.username)
     console.log(data)  
-    res.send(data)  // returns id of user or false
+    res.send({"id": data})  // returns id of user or false
 })
 
 

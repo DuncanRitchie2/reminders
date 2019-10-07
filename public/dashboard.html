@@ -10,9 +10,9 @@
 </head>
 <body>
     <main id="dashboard">
-        <!-- <h1>Reminders</h1> -->
-        <!-- <h2>All your reminders</h2> -->
+        <h1>Reminders for <span id="title-username"></span></h1>
 
+        <p id="edit-rubric">Click into a reminder to edit it, and press enter to save your edit.</p>
         <div id="reminders-container">
             <!-- Reminders from database populate here. -->
             <!-- <div class="reminder-container">
@@ -49,7 +49,7 @@
 
         
         <div id="new-reminder-container">
-
+            <h2>Add a new reminder</h2>
             <!-- Inputs for creating a new reminder. -->
             <input id="new-reminder-input" type="text" placeholder="Type a new reminder here&hellip;" />
             <input id="new-reminder-date" type="date" />
@@ -59,11 +59,17 @@
 
     </main>
 
-    <footer>
-        <p>
-            Made by Duncan Ritchie, Stefan Gouldson, and Tom Ormiston
-        </p>
-    </footer>
+
+    <!-- <footer>
+
+        <p class="love">Made with <span><i class="fas fa-heart"></i></span> by</p>
+        <div class="madeby">
+            <p>Duncan Ritchie</p>
+            <p>Stefan Gouldson</p>
+            <p>Tom Ormiston</p>
+        </div>
+
+    </footer> -->
     <script src="./client.js"></script>
 </body>
 </html>

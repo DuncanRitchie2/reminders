@@ -41,7 +41,8 @@ const submit=document.getElementById('submit')
 const inputEmail=document.getElementById('sign-up-email-input')
 const inputUsername=document.getElementById('sign-up-username-input')
 
-let user_id = 2;
+let user_id = localStorage.getItem('reminders_user_id');
+let titleUsername = document.getElementById("title-username");
 
 
 
@@ -63,16 +64,16 @@ if (numOfUser) {
 // Sign-up function
 
 const signUp = async () => {
-    const addUserObject = {"username" : "bob", "email" : "bob@hoskins.com"}
+    const addUserObject = {"username" : inputUsername.value, "email" : inputEmail.value}
 
     let response = await fetch("/register", {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify(
-            {addUser: addUserObject
+            {addUser: addUserObject}
 
-            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }
-        })
+            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }}
+        )
     })
 
     let result = await response.json()
@@ -80,14 +81,14 @@ const signUp = async () => {
 
     if (result.message === "Added new user ok") {
         console.log("Signup successful!")
+        alert('Username added! Please go to sign-in!')
     }
-    else {
-        console.log("Signup failed!")
+    // else {
+    //     console.log("Signup failed!")
+    // }
+    if (result.message === "ER_DUP_ENTRY"){
+        alert('Error, username is taken')
     }
-//    if (result.message == "ER_DUP_ENTRY"){
-//        alert('Error, username is taken')
-//    }
-    // console.table(result)
 // }
 
 // submit.addEventListener("click",signUp);
@@ -101,6 +102,16 @@ const signUp = async () => {
 
 if (signUpButton) {
     signUpButton.addEventListener("click",signUp);
+    inputEmail.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signUp()
+        }
+    });
+    inputUsername.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signUp()
+        }
+    });
 }
 
 // Sign-in function
@@ -110,18 +121,39 @@ const signIn = async () => {
 
     let response = await fetch(`/signin?username=${username}`)
     let data = await response.json()
-    console.log(`sign in username ${data}`)
+    console.log(data);
+    console.log(`sign in user has id ${data.id}`)
     // should get a user_id back
 
-
     // We need to enter user_id into local storage so that dashboard functions can access it.
+    localStorage.setItem('reminders_user_id', data.id);
+    localStorage.setItem('reminders_username', username);
+    console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+    console.log("Local storage has "+localStorage.getItem('reminders_username'))
+
+    if (data.id) {
+        location.pathname = "/dashboard.html"
+    }
+    else {
+        alert('Username not recognised! Please check your username or sign up.')
+    }
 }
 
 if (signInButton) {
     signInButton.addEventListener("click",signIn);
+    usernameInput.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signIn()
+        }
+    })
 }
 
 const displayReminders = (reminderObjects) => {
+    console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+    console.log("Local storage has "+localStorage.getItem('reminders_username'))
+
+    titleUsername.textContent = localStorage.getItem('reminders_username');
+
     // Clear any pre-existing reminders.
     remindersContainer.innerHTML = "";
 

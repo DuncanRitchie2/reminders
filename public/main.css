@@ -46,6 +46,23 @@ input{
     margin: 1%;
 }
 
+#edit-rubric {
+    color: var(--highdark-color);
+    font-weight: bold;
+}
+
+#dashboard h1 {
+    color: var(--highdark-color);
+    border-bottom: 6px solid var(--highlight-color);
+    width: 100%;
+}
+
+#new-reminder-container h2 {
+    color: var(--highdark-color);
+    border-bottom: 6px solid var(--highlight-color);
+    width: 100%;
+}
+
 /* SPLASH PAGE */
 
 #sign-cont{
@@ -263,17 +280,16 @@ p {
 #new-reminder-container{
     border: none;
     background-color: #dadada;
-    position: fixed;
-    bottom: 50px;
+    position: sticky;
+    bottom: 18px;
     padding: 12px 12px 60px;
-    width: 75%;
+    width: calc(100% - 24px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 36px;
+    margin-bottom: calc(1%);
 }
-
-
-
 
 
 #new-reminder-input{
@@ -332,7 +348,7 @@ p {
 #new-reminder-submit{
     position: absolute;
     bottom: 0;
-    left: 72.5vw;
+    right: 0px;
     background: blue !important;
     /* transform: scale(2.5); */
     color: white !important;
@@ -351,7 +367,7 @@ p {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
     background-color: var(--highlight-color);
@@ -364,6 +380,7 @@ footer p {
     /* width: calc(100% - 24px); */
     text-align: center;
     line-height: 0.5em;
+    margin-bottom: 0;
 }
 
 .madeby{
@@ -374,6 +391,10 @@ footer p {
     
 }
 
+
+a:link,a:visited {
+    color: var(--darkerblue-color);
+}
 
 
 
@@ -412,7 +433,7 @@ footer p {
         font-size: 100%;
         margin: 1em 0 0 0 ;
     }
-
+  
     #new-reminder-submit{
         left: 70vw;
         font-size: 7.9vh !important;
