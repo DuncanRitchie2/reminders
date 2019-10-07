@@ -114,10 +114,16 @@ const signIn = async () => {
     console.log(`sign in user has id ${data.id}`)
     // should get a user_id back
 
-
     // We need to enter user_id into local storage so that dashboard functions can access it.
     localStorage.setItem('reminders_user_id', data.id);
     console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+
+    if (data.id) {
+        location.pathname = "/dashboard.html"
+    }
+    else {
+        alert('Username not recognised! Please check your username or sign up.')
+    }
 }
 
 if (signInButton) {
