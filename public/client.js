@@ -127,15 +127,15 @@ const signIn = async () => {
 
     let response = await fetch(`/signin?username=${username}`)
     let data = await response.json()
-    console.log(data);
-    console.log(`sign in user has id ${data.id}`)
+    // console.log(data);
+    // console.log(`sign in user has id ${data.id}`)
     // should get a user_id back
 
     // We need to enter user_id into local storage so that dashboard functions can access it.
     localStorage.setItem('reminders_user_id', data.id);
     localStorage.setItem('reminders_username', username);
-    console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
-    console.log("Local storage has "+localStorage.getItem('reminders_username'))
+    // console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+    // console.log("Local storage has "+localStorage.getItem('reminders_username'))
 
     if (data.id) {
         location.pathname = "/dashboard.html"
@@ -155,8 +155,8 @@ if (signInButton) {
 }
 
 const displayReminders = (reminderObjects) => {
-    console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
-    console.log("Local storage has "+localStorage.getItem('reminders_username'))
+    // console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+    // console.log("Local storage has "+localStorage.getItem('reminders_username'))
 
     titleUsername.textContent = localStorage.getItem('reminders_username');
 
@@ -196,7 +196,7 @@ const displayReminders = (reminderObjects) => {
                         reminder: reminderInput.value,
                         date_added: reminderDate.value
                     }
-                    console.log(editedReminderObject)
+                    // console.log(editedReminderObject)
                     editReminder(editedReminderObject)
                     // reminderInput.focus()
                 }
@@ -214,7 +214,7 @@ const displayReminders = (reminderObjects) => {
                         reminder: reminderInput.value,
                         date_added: reminderDate.value
                     }
-                    console.log(editedReminderObject)
+                    // console.log(editedReminderObject)
                     editReminder(editedReminderObject)
                     // reminderDate.focus();
                 }
@@ -233,7 +233,7 @@ const displayReminders = (reminderObjects) => {
             div.appendChild(reminderDate);
             div.appendChild(reminderDeleteButton);
 
-            console.log(div)
+            // console.log(div)
             remindersContainer.appendChild(div);
         })
     }
@@ -250,7 +250,7 @@ const readReminders = async () => {
     let response = await fetch(`/readreminder?user_id=${user_id}`)
     let data = await response.json()
     
-    console.log(`returned data from user_id 3, readreminder is ${data}`)
+    // console.log(`returned data from user_id 3, readreminder is ${data}`)
 
     displayReminders(data)
 }
@@ -264,7 +264,7 @@ const getNewReminderFromInput = () => {
         }
         addReminderInput.value = ""
         addReminderDate.value = ""
-        console.log(reminderObject)
+        // console.log(reminderObject)
         addReminder(reminderObject)
     }
     else {
@@ -283,7 +283,7 @@ const addReminder = async (reminderObject) => {
     })
 
     let result = await response.json()
-    console.log(result)
+    // console.log(result)
     readReminders();
 }
 
@@ -357,7 +357,7 @@ for (let i = 0; i < deleteReminderButtons.length; i++) {
 // }
 
 if (remindersContainer) {
-    console.log("This page has a reminder-container!")
+    // console.log("This page has a reminder-container!")
     readReminders()
 }
 
