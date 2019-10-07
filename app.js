@@ -5,7 +5,7 @@ const { promisify } = require('util')
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "password1",
     database: "reminder_app"
 })
 
