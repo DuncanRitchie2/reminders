@@ -111,7 +111,7 @@ const signIn = async () => {
     let response = await fetch(`/signin?username=${username}`)
     let data = await response.json()
     console.log(data);
-    console.log(`sign in username ${data}`)
+    console.log(`sign in user has id ${data.id}`)
     // should get a user_id back
 
 

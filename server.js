@@ -51,7 +51,7 @@ app.get("/signin", async (req,res) => {
     console.table(req.query)
     const data = await isUserRegistered(req.query.username)
     console.log(data)  
-    res.send(data)  // returns id of user or false
+    res.send({"id": data})  // returns id of user or false
 })
 
 
