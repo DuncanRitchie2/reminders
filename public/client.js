@@ -41,9 +41,7 @@ const submit=document.getElementById('submit')
 const inputEmail=document.getElementById('sign-up-email-input')
 const inputUsername=document.getElementById('sign-up-username-input')
 
-const enter=document.getElementById('enter')
-
-let user_id = 2;
+let user_id = localStorage.getItem('reminders_user_id') || 2;
 
 
 
@@ -118,6 +116,8 @@ const signIn = async () => {
 
 
     // We need to enter user_id into local storage so that dashboard functions can access it.
+    localStorage.setItem('reminders_user_id', data.id);
+    console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
 }
 
 if (signInButton) {
@@ -125,6 +125,8 @@ if (signInButton) {
 }
 
 const displayReminders = (reminderObjects) => {
+    console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+
     // Clear any pre-existing reminders.
     remindersContainer.innerHTML = "";
 
@@ -187,7 +189,8 @@ const displayReminders = (reminderObjects) => {
 
             reminderDeleteButton.className = "reminder-delete-button";
             reminderDeleteButton.key = reminderObject.id;
-            reminderDeleteButton.textContent = "Delete";
+            // reminderDeleteButton.textContent = "Delete";
+            reminderDeleteButton.innerHTML = '<button class="reminder-delete-button" key=1><i class="fas fa-trash"></i></button>';
             reminderDeleteButton.addEventListener("click",() => {
                 console.log("Trying to delete!")
                 deleteReminder(reminderObject.id)
