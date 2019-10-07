@@ -11,6 +11,7 @@ html {
     --body-size: 16px;
     --date-size: 14px;
     --button-size: 11px;
+    --dash-butt-size: 30px;
     font-family: 'Gilroy Light', 'Gilroy', 'Helvetica', sans-serif;
 }
 
@@ -211,39 +212,122 @@ p {
     font-size: var(--body-size);
 }
 
+
+/*******************************/
+
+/* .flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+  
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+  } */
+  
+  /* .flex-item:nth-of-type(1) { flex-grow: 8; }
+  .flex-item:nth-of-type(2) { flex-grow: 1; } */
+  
+
+
+
+/*******************************/
+
+#reminders-container{
+    margin-top: 3vh;
+}
+
+
 .reminder-container,#new-reminder-container {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+
     align-items: center;
     margin-bottom: 6px;
+    border-bottom: 4px solid darkgrey;
+
+    /* padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex; */
+  
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+
+#new-reminder-container{
+    border: none;
+    background-color: #dadada;
+    position: fixed;
+    bottom: 50px;
+    padding: 12px 12px 60px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+#new-reminder-input{
+    width: 100%;
+    height: 2em;
+    background-color: darkgrey;
 }
 
 #dashboard input {
-    font-family: inherit;
+    /* font-family: inherit;
     font-size: var(--body-size);
     min-width: calc(50% - 48px);
     max-width: 100%;
     min-height: 24px;
+    padding: 3px 6px; */
+
+
+    font-family: inherit;
+    font-size: var(--body-size);
+    /* min-width: calc(50% - 48px); */
+    max-width: 100%;
+    min-height: 24px;
     padding: 3px 6px;
+    border: none;
+    background-color: inherit;
+    margin: 0;
 }
 
 #dashboard input[type=text] {
     margin-right: 3px;
+    flex-grow: 8;
 }
 
 #dashboard input[type=date] {
     font-size: var(--date-size);
+    flex-grow: 1;
+    /* background: aquamarine; */
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
 
 #dashboard button {
-    font-family: inherit;
+    /* font-family: inherit;
     font-weight: 600;
-    font-size: var(--button-size);
+
     color: var(--warning-color);
     padding: 9px;
-    width: 5em;
+    width: 5em; */
+
+    font-size: var(--dash-butt-size);
+    color: var(--warning-color);
+    padding: 9px;
+    border: none;
+    background-color: inherit;
+    margin: 0;
+    flex-grow: 1;
+
 }
 
 #no-reminders-container {
