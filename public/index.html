@@ -13,8 +13,8 @@
         <h1 class="index-head">Welcome to the reminders app</h1>
         <h2 class="index-subhead">We currently have <span id="num"></span> users and counting</h2>
         <div id="button-cont">
-            <button class="open-button" id="in">Sign in</button> 
-            <button class="open-button" id="up">Sign up</button>
+            <button class="open-button" id="sign-in-from-home-button">Sign in</button> 
+            <button class="open-button" id="sign-up-from-home-button">Sign up</button>
         </div>
     </div>
 
@@ -23,23 +23,23 @@
     <div id="signInDiv">
         <h1 class="index-head">Please sign in</h1>
         <div class="enter-cont">
-            <input type="text" placeholder="Enter your username">
-            <button id="enter">Enter</button>
+            <input type="text" placeholder="Enter your username" id="sign-in-username-input">
+            <button id="sign-in-button">Enter</button>
         </div>
         <h2><i>Don&rsquo;t have an account?</i></h2>
-        <button class="open-button" id="up1">Sign up</button>
+        <button class="open-button" id="sign-up-from-sign-in-button">Sign up</button>
         
     </div>
 
     <div id="signUpDiv">
         <h1 class="index-head">Please enter your details</h1>
         <div class="enter-cont">
-            <input id="inputEmail" type="text" placeholder="Enter your email">
-            <input id="inputUsername" type="text" placeholder="Create a username">
-            <button id="submit">Submit</button>
+            <input type="text" id="sign-up-email-input" placeholder="Enter your email">
+            <input type="text" id="sign-up-username-input" placeholder="Create a username">
+            <button id="sign-up-button">Submit</button>
         </div>
         <h2 class="index-subhead"><i>Already with us?</i></h2>
-        <button class="open-button" id="in1">Sign in</button> 
+        <button class="open-button" id="sign-in-from-sign-up-button">Sign in</button> 
     </div>
 
     <svg id="pen" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 499.1 499.1">
@@ -50,7 +50,6 @@
         17 0 10-23-24z"/>
     </svg>
 
-<script src="./signinsignup.js"></script>
 <script src="./client.js"></script>
 </body>
 </html>
