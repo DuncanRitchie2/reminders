@@ -47,7 +47,7 @@ const signUp = async () => {
     if (result.message == "ER_DUP_ENTRY"){
         alert('Error, username is taken')
     }
-    // console.table(result)
+    console.table(result)
 }
 
 submit.addEventListener("click",signUp);
