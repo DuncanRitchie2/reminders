@@ -257,14 +257,22 @@ footer {
     background-color: var(--highlight-color);
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
 }
 
 footer p {
-    width: calc(100% - 24px);
+    /* width: calc(100% - 24px); */
     text-align: center;
+    line-height: 0.5em;
 }
 
-
+.madeby{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 2.5em;
+    
+}
 
 
 

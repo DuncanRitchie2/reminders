@@ -184,7 +184,8 @@ const displayReminders = (reminderObjects) => {
 
             reminderDeleteButton.className = "reminder-delete-button";
             reminderDeleteButton.key = reminderObject.id;
-            reminderDeleteButton.textContent = "Delete";
+            // reminderDeleteButton.textContent = "Delete";
+            reminderDeleteButton.innerHTML = '<button class="reminder-delete-button" key=1><i class="fas fa-trash"></i></button>';
             reminderDeleteButton.addEventListener("click",() => {
                 console.log("Trying to delete!")
                 deleteReminder(reminderObject.id)
