@@ -13,6 +13,7 @@ html {
     --button-size: 11px;
     --dash-butt-size: 30px;
     font-family: 'Gilroy Light', 'Gilroy', 'Helvetica', sans-serif;
+    --submitt-font-size:50px;
 }
 
 body{
@@ -276,6 +277,9 @@ p {
 }
 
 
+
+
+
 #new-reminder-input{
     width: 100%;
     height: 2em;
@@ -317,12 +321,6 @@ p {
 }
 
 #dashboard button {
-    /* font-family: inherit;
-    font-weight: 600;
-
-    color: var(--warning-color);
-    padding: 9px;
-    width: 5em; */
 
     font-size: var(--dash-butt-size);
     color: var(--warning-color);
@@ -333,6 +331,24 @@ p {
     flex-grow: 1;
 
 }
+
+
+#new-reminder-submit{
+    position: absolute;
+    bottom: 0;
+    left: 75.5vw;
+    background: blue !important;
+    /* transform: scale(2.5); */
+    color: white !important;
+    width: 2em;
+    height: 2em;
+    border-radius: 50% !important;
+    border: 15px solid #dadada !important;
+    font-size: 6.9vh !important;
+    /* font-size: var(--submitt-font-size); */
+
+}
+
 
 #no-reminders-container {
     display: none;
