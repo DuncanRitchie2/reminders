@@ -41,7 +41,8 @@ const submit=document.getElementById('submit')
 const inputEmail=document.getElementById('sign-up-email-input')
 const inputUsername=document.getElementById('sign-up-username-input')
 
-let user_id = localStorage.getItem('reminders_user_id') || 2;
+let user_id = localStorage.getItem('reminders_user_id');
+let titleUsername = document.getElementById("title-username");
 
 
 
@@ -101,6 +102,16 @@ const signUp = async () => {
 
 if (signUpButton) {
     signUpButton.addEventListener("click",signUp);
+    inputEmail.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signUp()
+        }
+    });
+    inputUsername.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signUp()
+        }
+    });
 }
 
 // Sign-in function
@@ -116,7 +127,9 @@ const signIn = async () => {
 
     // We need to enter user_id into local storage so that dashboard functions can access it.
     localStorage.setItem('reminders_user_id', data.id);
+    localStorage.setItem('reminders_username', username);
     console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+    console.log("Local storage has "+localStorage.getItem('reminders_username'))
 
     if (data.id) {
         location.pathname = "/dashboard.html"
@@ -128,10 +141,18 @@ const signIn = async () => {
 
 if (signInButton) {
     signInButton.addEventListener("click",signIn);
+    usernameInput.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signIn()
+        }
+    })
 }
 
 const displayReminders = (reminderObjects) => {
     console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+    console.log("Local storage has "+localStorage.getItem('reminders_username'))
+
+    titleUsername.textContent = localStorage.getItem('reminders_username');
 
     // Clear any pre-existing reminders.
     remindersContainer.innerHTML = "";
