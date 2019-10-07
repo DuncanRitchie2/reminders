@@ -216,7 +216,7 @@ input{
 
 
 #dashboard {
-    padding: 12px 12px 60px;
+    padding: 12px;
     margin-left: auto;
     margin-right: auto;
     width: 88%;
@@ -285,13 +285,13 @@ p {
     background-color: #dadada;
     position: sticky;
     bottom: 18px;
-    padding: 12px 12px 60px;
+    padding: 12px;
     width: calc(100%);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 36px;
-    margin-bottom: calc(2%);
+    margin-bottom: 12px;
 }
 
 
@@ -336,21 +336,19 @@ p {
 }
 
 #dashboard button {
-
-    font-size: var(--dash-butt-size);
+    font-size: var(--body-size);
     color: var(--warning-color);
     padding: 9px;
     border: none;
     background-color: inherit;
     margin: 0;
     flex-grow: 1;
-
 }
 
 #sign-out {
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: 12px;
+    right: 12px;
     font-size: 12px;
 }
 
@@ -536,7 +534,7 @@ a:hover {
     }
 
     #dashboard button {
-        font-size: var(--dash-butt-size);
+        font-size: var(--body-size);
         color: var(--warning-color);
         padding: 0;
         border: none;
@@ -589,7 +587,7 @@ a:hover {
         padding: 0;
         margin: 0;
         text-align: left;
-        width: 7em;
+        width: 100%;
     }
 
 
