@@ -380,6 +380,7 @@ footer p {
     /* width: calc(100% - 24px); */
     text-align: center;
     line-height: 0.5em;
+    margin-bottom: 0;
 }
 
 .madeby{
@@ -390,6 +391,10 @@ footer p {
     
 }
 
+
+a:link,a:visited {
+    color: var(--darkerblue-color);
+}
 
 
 
