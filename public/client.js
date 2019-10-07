@@ -63,16 +63,16 @@ if (numOfUser) {
 // Sign-up function
 
 const signUp = async () => {
-    const addUserObject = {"username" : "bob", "email" : "bob@hoskins.com"}
+    const addUserObject = {"username" : inputUsername.value, "email" : inputEmail.value}
 
     let response = await fetch("/register", {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify(
-            {addUser: addUserObject
+            {addUser: addUserObject}
 
-            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }
-        })
+            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }}
+        )
     })
 
     let result = await response.json()
@@ -80,14 +80,14 @@ const signUp = async () => {
 
     if (result.message === "Added new user ok") {
         console.log("Signup successful!")
+        alert('Username added! Please go to sign-in!')
     }
-    else {
-        console.log("Signup failed!")
+    // else {
+    //     console.log("Signup failed!")
+    // }
+    if (result.message === "ER_DUP_ENTRY"){
+        alert('Error, username is taken')
     }
-//    if (result.message == "ER_DUP_ENTRY"){
-//        alert('Error, username is taken')
-//    }
-    // console.table(result)
 // }
 
 // submit.addEventListener("click",signUp);
@@ -110,6 +110,7 @@ const signIn = async () => {
 
     let response = await fetch(`/signin?username=${username}`)
     let data = await response.json()
+    console.log(data);
     console.log(`sign in username ${data}`)
     // should get a user_id back
 

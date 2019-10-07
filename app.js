@@ -138,8 +138,8 @@ const addUser = async (addUser) => {
         // server should send this user_id to client 
         
         console.log('Add user via SQL query')
-        console.log(data.affectedRows)
-        return(data.affectedRows)
+        console.log(data)
+        return(data.message || "Added new user ok")
 
 
     } catch (error) {
