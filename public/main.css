@@ -20,9 +20,10 @@ body{
     background-color: var(--bkgd-color);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     margin: 0;
     padding: 0;
+    min-height: 100%;
 
 }
 
@@ -210,15 +211,17 @@ input{
     transform: translateY(3px);
 }
 
-/* CSS for the dashboard */
+
+/* DASHBOARD */
 
 
-main {
+#dashboard {
     padding: 12px 12px 60px;
     margin-left: auto;
     margin-right: auto;
     width: 88%;
     max-width: calc(100% - 24px);
+    min-height: 100%;
 }
 
 h1 {
@@ -283,12 +286,12 @@ p {
     position: sticky;
     bottom: 18px;
     padding: 12px 12px 60px;
-    width: calc(100% - 24px);
+    width: calc(100%);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 36px;
-    margin-bottom: calc(1%);
+    margin-bottom: calc(2%);
 }
 
 
@@ -347,7 +350,7 @@ p {
 
 #new-reminder-submit{
     position: absolute;
-    bottom: 0;
+    bottom: 18px;
     right: 0px;
     background: blue !important;
     /* transform: scale(2.5); */
@@ -355,9 +358,11 @@ p {
     width: 2em;
     height: 2em;
     border-radius: 50% !important;
-    border: 15px solid #dadada !important;
-    font-size: 6.9vh !important;
-    /* font-size: var(--submitt-font-size); */
+    border: 10px solid #dadada !important;
+    font-size: 6.8vh !important;
+    text-align: center;
+    z-index: 2;
+    /* margin-right: 5vw; */
 
 }
 
@@ -374,6 +379,10 @@ footer {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
+}
+
+#dashboard + footer {
+    position: static;
 }
 
 footer p {
@@ -394,12 +403,18 @@ footer p {
 
 a:link,a:visited {
     color: var(--darkerblue-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: black
 }
 
 
 
 
-@media only screen and (max-width:700px){
+@media only screen and (max-width:700px) and (orientation: portrait){
     input{
         font-size: 100%;
     }
@@ -432,5 +447,165 @@ a:link,a:visited {
     #sign-up-button{
         font-size: 100%;
         margin: 1em 0 0 0 ;
+    }
+  
+    #new-reminder-submit{
+        left: 70vw;
+        font-size: 7.9vh !important;
+    }
+
+}
+
+
+
+
+@media only screen and (min-width:300px) and (max-width:699px) and (orientation: portrait){
+    input{
+        font-size: 100%;
+    }
+
+    #sign-cont{
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .enter-cont{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #signInDiv{
+        font-size: 100%;
+        text-align: center;
+    }
+
+    #sign-in-button{
+        font-size: 100%;
+    }
+
+    #signUpDiv{
+        font-size: 100%;
+        text-align: center;
+    }
+    
+    #sign-up-button{
+        font-size: 100%;
+        margin: 1em 0 0 0 ;
+    }
+
+    #new-reminder-submit {
+        left: 70vw;
+        font-size: 6vh !important;
+        bottom: 13vh;
+    }
+
+    footer p {
+        font-size: 13px;
+    }
+
+    #dashboard button {
+        border: none;
+        margin: 0;
+    }
+
+    #dashboard input {
+        font-family: inherit;
+        font-size: var(--body-size);
+        max-width: 100%;
+        border: none;
+        background-color: inherit;
+        margin: 0;
+        width: 100%;
+    }
+
+    #dashboard input[type=date] {
+        font-size: var(--date-size);
+        flex-grow: 1;
+        /* background: aquamarine; */
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        width: 7em;
+    }
+
+    #dashboard button {
+        font-size: var(--dash-butt-size);
+        color: var(--warning-color);
+        padding: 0;
+        border: none;
+        background-color: inherit;
+        margin: 0;
+        text-align: right;
+    }
+
+
+    #new-reminder-submit {
+        text-align: center !important;
+    }
+
+
+    #reminder-delete-button{
+        width: 1vw;
+        margin-right: 3vw;
+    }
+
+
+
+    .reminder-container {
+        width: 100%;
+        display: flex;
+        /* flex-direction: row; */
+        align-items: center;
+        /* margin-bottom: 6px; */
+        border-bottom: 4px solid darkgrey;
+        justify-content: space-around;
+        /* flex-flow: row wrap; */
+        align-items: stretch;
+    }
+
+    #new-reminder-container {
+        width: 80%;
+        display: flex;
+        /* flex-direction: row; */
+        align-items: center;
+        /* margin-bottom: 6px; */
+        /* border-bottom: 4px solid darkgrey; */
+        justify-content: space-around;
+        /* flex-flow: row wrap; */
+        align-items: stretch;
+    }
+
+    #dashboard input[type=date] {
+        font-size: var(--date-size);
+        flex-grow: 1;
+        /* background: aquamarine; */
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        width: 7em;
+    }
+
+
+}
+
+@media only screen and (min-width:600px) and (orientation: landscape){
+
+    #new-reminder-submit{
+        width: calc(2 * var(--submitt-font-size));
+        height: calc(2 * var(--submitt-font-size));
+        /* transform: scale(1.5); */
+    }
+
+    #new-reminder-container {
+        border: none;
+        background-color: #dadada;
+        position: fixed;
+        bottom: 50px;
+        padding: 12px 12px 60px;
+        width: calc(88% - 24px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
