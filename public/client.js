@@ -44,7 +44,7 @@ const inputUsername=document.getElementById('sign-up-username-input')
 let user_id = localStorage.getItem('reminders_user_id');
 let titleUsername = document.getElementById("title-username");
 
-
+let sign_out=document.getElementById('sign-out')
 
 
 // CLIENT-SIDE FUNCTIONS
@@ -59,6 +59,12 @@ const getTotal = async () => {
 
 if (numOfUser) {
     getTotal();
+}
+
+if (sign_out){
+    sign_out.addEventListener("click",()=>{
+        location.pathname="/index.html"
+    })
 }
 
 // Sign-up function
