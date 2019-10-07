@@ -347,6 +347,12 @@ p {
 
 }
 
+#sign-out {
+    position: fixed;
+    top: 6px;
+    right: 6px;
+    font-size: 12px;
+}
 
 #new-reminder-submit{
     position: absolute;
