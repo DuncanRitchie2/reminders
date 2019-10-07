@@ -496,11 +496,6 @@ footer p {
 
 
 
-        #reminder-delete-button{
-            width: 1vw;
-            margin-right: 3vw;
-        }
-
 
         #dashboard button {
             font-size: var(--dash-butt-size);
@@ -509,8 +504,21 @@ footer p {
             border: none;
             background-color: inherit;
             margin: 0;
-
+            text-align: right;
         }
+
+
+        #new-reminder-submit {
+           
+            text-align: center !important;
+        }
+
+
+        #reminder-delete-button{
+            width: 1vw;
+            margin-right: 3vw;
+        }
+
 
 
         .reminder-container {
