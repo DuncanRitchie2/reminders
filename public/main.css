@@ -281,7 +281,7 @@ p {
     border: none;
     background-color: #dadada;
     position: sticky;
-    bottom: 50px;
+    bottom: 18px;
     padding: 12px 12px 60px;
     width: calc(100% - 24px);
     display: flex;
