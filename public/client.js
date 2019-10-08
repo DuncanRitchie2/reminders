@@ -1,6 +1,5 @@
 console.log("Hello from client.js!")
 
-
 // client side
 
 
