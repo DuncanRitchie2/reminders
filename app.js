@@ -1,6 +1,10 @@
 const mysql = require('mysql')
 const { promisify } = require('util')
 
+// ******************** CHECK THIS *******************
+// make sure the local mysql setup corresponds to this
+// e.g. password should not typically be 'password' for
+// the mysql server
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -9,7 +13,20 @@ const connection = mysql.createConnection({
     database: "reminder_app"
 })
 
+//  connection.query(' query passed here')  
+// is the non-promisified form
+// but we want to uses promises so we promisify it and 
+// --> Unclear on why we need bind but its what previous code
+// snippets suggest
+
 const promisifiedQuery = promisify(connection.query).bind(connection)
+
+
+
+// Methods for:
+// runTotal, addUser
+// readReminder, isUserRegistered, addReminder, editReminder, deleteReminder
+
 
 // gets total number of users
 const runTotal = async () =>{

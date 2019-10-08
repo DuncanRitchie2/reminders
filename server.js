@@ -27,6 +27,15 @@ app.get("/total", async (req, res) =>{
 
 
 
+
+
+// Setup RESTful api  GET, POST PUT and DELETE for
+// each type of fetch api is given its own endpoint
+// it then takes in the request, selects whats needed
+// from the request data and via a method
+// (held in app.js module), gives the responce back
+
+
 // GET   /readreminder
 app.get("/readreminder", async (req,res) => {
     console.log(req.body)
