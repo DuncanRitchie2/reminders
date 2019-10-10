@@ -1,6 +1,6 @@
-# Reminder App
+# Reminders App
 
-We developed this a team of three in 4 days, to grow skills in Node.js, Express.js and MySql.
+We developed this a team of three (Duncan Ritchie, Stefan Gouldson, and Tom Ormiston) in five days, to grow skills in Node.js, Express.js and MySql.
 
 The app allows individual users to sign in (or sign up, then sign in) with a dashboard showing their list of reminders and their deadlines.
 
@@ -165,5 +165,8 @@ and the sign-in screen should be displyed with a number of users e.g. 10 shown
 
 
 
+### GitHub Forks
 
-
+This repo is forked by my teammates Tom and Stefan:
+* https://github.com/tomsstuff101/reminders
+* https://github.com/stefangouldson/reminders
