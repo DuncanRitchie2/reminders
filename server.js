@@ -6,7 +6,7 @@ const app = express()
 const port = process.env.PORT || 3019;
 
 // Methods relating to the database
-const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder,runTotal} = require('./app')
+const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder, runTotal} = require('./app')
 
 
 // define the path where the public files are. 
