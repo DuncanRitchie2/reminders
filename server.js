@@ -2,11 +2,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
+const app = express()
+const port = process.env.PORT || 3019;
 
 // Pull in methods form app.js
 const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder,runTotal} = require('./app')
 
-const app = express()
 
 // define the path where the public files are. 
 // This has to be an absolute path
@@ -104,6 +105,6 @@ app.put("/editreminders", async (req,res) => {
 
 
 // setup basic URL where server exists
-app.listen(3019, () => {
-    console.log('listening to localhost:3019')
+app.listen(port, () => {
+    console.log('listening to port '+port)
 })
