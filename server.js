@@ -1,11 +1,11 @@
-// require dependancies
+// require dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const app = express()
 const port = process.env.PORT || 3019;
 
-// Pull in methods form app.js
+// Methods relating to the database
 const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder,runTotal} = require('./app')
 
 

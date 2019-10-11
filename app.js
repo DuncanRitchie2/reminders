@@ -1,16 +1,21 @@
 const mysql = require('mysql')
 const { promisify } = require('util')
 
+if (process.env.ENVIRONMENT != "PRODUCTION") {
+	const dotenv = require('dotenv');
+	dotenv.config()
+}
+
 // ******************** CHECK THIS *******************
 // make sure the local mysql setup corresponds to this
 // e.g. password should not typically be 'password' for
 // the mysql server
 
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "reminder_app"
+    host: process.env.HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DATABASE
 })
 
 //  connection.query(' query passed here')  
