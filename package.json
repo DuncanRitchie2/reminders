@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "reminders",
   "version": "1.0.0",
   "description": "Reminders app",
   "main": "app.js",
@@ -24,7 +24,9 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "mysql": "^2.17.1",
+    "mysql": "^2.17.1"
+  },
+  "devDependencies": {
     "nodemon": "^1.19.3"
   }
 }
