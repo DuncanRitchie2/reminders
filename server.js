@@ -14,7 +14,7 @@ const { readReminder, isUserRegistered, addReminder, addUser, editReminder, dele
 app.use(express.static(path.join(__dirname, "public")))
 
 
-// To allow HTTP POST requests in Expresss set up bodyParser
+// To allow HTTP POST requests in Express, set up bodyParser
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -22,7 +22,7 @@ app.get("/total", async (req, res) =>{
     const total = await runTotal();
 
     res.send({
-        total:total[0].num
+        total: total[0].num
     });
 });
 
