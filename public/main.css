@@ -11,16 +11,19 @@ html {
     --body-size: 16px;
     --date-size: 14px;
     --button-size: 11px;
+    --dash-butt-size: 30px;
     font-family: 'Gilroy Light', 'Gilroy', 'Helvetica', sans-serif;
+    --submitt-font-size:50px;
 }
 
 body{
     background-color: var(--bkgd-color);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     margin: 0;
     padding: 0;
+    min-height: 100%;
 
 }
 
@@ -42,6 +45,23 @@ button {
 input{
     font-size: 100%;
     margin: 1%;
+}
+
+#edit-rubric {
+    color: var(--highdark-color);
+    font-weight: bold;
+}
+
+#dashboard h1 {
+    color: var(--highdark-color);
+    border-bottom: 6px solid var(--highlight-color);
+    width: 100%;
+}
+
+#new-reminder-container h2 {
+    color: var(--highdark-color);
+    border-bottom: 6px solid var(--highlight-color);
+    width: 100%;
 }
 
 /* SPLASH PAGE */
@@ -97,8 +117,6 @@ input{
 .open-button:active{
     transform: translateY(3px);
 }
-
-
 
 #pen{
     position: absolute;
@@ -191,15 +209,17 @@ input{
     transform: translateY(3px);
 }
 
-/* CSS for the dashboard */
+
+/* DASHBOARD */
 
 
-main {
-    padding: 12px 12px 60px;
+#dashboard {
+    padding: 12px;
     margin-left: auto;
     margin-right: auto;
     width: 88%;
     max-width: calc(100% - 24px);
+    min-height: 100%;
 }
 
 h1 {
@@ -211,66 +231,192 @@ p {
     font-size: var(--body-size);
 }
 
+
+/*******************************/
+
+/* .flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+  
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+  } */
+  
+  /* .flex-item:nth-of-type(1) { flex-grow: 8; }
+  .flex-item:nth-of-type(2) { flex-grow: 1; } */
+  
+
+
+
+/*******************************/
+
+#reminders-container{
+    margin-top: 3vh;
+}
+
+
 .reminder-container,#new-reminder-container {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+
     align-items: center;
     margin-bottom: 6px;
+    border-bottom: 4px solid darkgrey;
+
+    /* padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex; */
+  
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+
+#new-reminder-container{
+    border: none;
+    background-color: #dadada;
+    position: sticky;
+    bottom: 18px;
+    padding: 12px;
+    width: calc(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 36px;
+    margin-bottom: 12px;
+}
+
+
+#new-reminder-input{
+    width: 100%;
+    height: 2em;
+    background-color: darkgrey;
 }
 
 #dashboard input {
-    font-family: inherit;
+    /* font-family: inherit;
     font-size: var(--body-size);
     min-width: calc(50% - 48px);
     max-width: 100%;
     min-height: 24px;
+    padding: 3px 6px; */
+
+
+    font-family: inherit;
+    font-size: var(--body-size);
+    /* min-width: calc(50% - 48px); */
+    max-width: 100%;
+    min-height: 24px;
     padding: 3px 6px;
+    border: none;
+    background-color: inherit;
+    margin: 0;
 }
 
 #dashboard input[type=text] {
     margin-right: 3px;
+    flex-grow: 8;
 }
 
 #dashboard input[type=date] {
     font-size: var(--date-size);
+    flex-grow: 1;
+    /* background: aquamarine; */
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
 
 #dashboard button {
-    font-family: inherit;
-    font-weight: 600;
-    font-size: var(--button-size);
+    font-size: var(--body-size);
     color: var(--warning-color);
     padding: 9px;
-    width: 5em;
+    border: none;
+    background-color: inherit;
+    margin: 0;
+    flex-grow: 1;
 }
+
+#sign-out {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 12px;
+}
+
+#new-reminder-submit{
+    position: absolute;
+    bottom: 18px;
+    right: 0px;
+    background: blue !important;
+    /* transform: scale(2.5); */
+    color: white !important;
+    width: 2em;
+    height: 2em;
+    border-radius: 50% !important;
+    border: 10px solid #dadada !important;
+    font-size: 6.8vh !important;
+    text-align: center;
+    z-index: 2;
+    /* margin-right: 5vw; */
+
+}
+
 
 #no-reminders-container {
     display: none;
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
     background-color: var(--highlight-color);
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
+}
+
+#dashboard + footer {
+    position: static;
 }
 
 footer p {
-    width: calc(100% - 24px);
+    /* width: calc(100% - 24px); */
     text-align: center;
+    line-height: 0.5em;
+    margin-bottom: 0;
+}
+
+.madeby{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 2.5em;
+    
+}
+
+
+a:link,a:visited {
+    color: var(--darkerblue-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: black
 }
 
 
 
 
-
-
-
-@media only screen and (max-width:700px){
+@media only screen and (max-width:700px) and (orientation: portrait){
     input{
         font-size: 100%;
     }
@@ -304,4 +450,249 @@ footer p {
         font-size: 100%;
         margin: 1em 0 0 0 ;
     }
+  
+    #new-reminder-submit{
+        left: 70vw;
+        font-size: 7.9vh !important;
+    }
+
+}
+
+
+
+
+@media only screen and (min-width:300px) and (max-width:699px) and (orientation: portrait){
+    input{
+        font-size: 100%;
+    }
+
+    #sign-cont{
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .enter-cont{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #signInDiv{
+        font-size: 100%;
+        text-align: center;
+    }
+
+    #sign-in-button{
+        font-size: 100%;
+    }
+
+    #signUpDiv{
+        font-size: 100%;
+        text-align: center;
+    }
+    
+    #sign-up-button{
+        font-size: 100%;
+        margin: 1em 0 0 0 ;
+    }
+
+    #new-reminder-submit {
+        left: 70vw;
+        font-size: 6vh !important;
+        bottom: 13vh;
+    }
+
+    footer p {
+        font-size: 13px;
+    }
+
+    #dashboard button {
+        border: none;
+        margin: 0;
+    }
+
+    #dashboard input {
+        font-family: inherit;
+        font-size: var(--body-size);
+        max-width: 100%;
+        border: none;
+        background-color: inherit;
+        margin: 0;
+        width: 100%;
+    }
+
+    #dashboard input[type=date] {
+        font-size: var(--date-size);
+        flex-grow: 1;
+        /* background: aquamarine; */
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        width: 7em;
+    }
+
+    #dashboard button {
+        font-size: var(--body-size);
+        color: var(--warning-color);
+        padding: 0;
+        border: none;
+        background-color: inherit;
+        margin: 0;
+        text-align: right;
+    }
+
+
+    #new-reminder-submit {
+        text-align: center !important;
+    }
+
+
+    #reminder-delete-button{
+        width: 1vw;
+        margin-right: 3vw;
+    }
+
+
+
+    .reminder-container {
+        width: 100%;
+        display: flex;
+        /* flex-direction: row; */
+        align-items: center;
+        /* margin-bottom: 6px; */
+        border-bottom: 4px solid darkgrey;
+        justify-content: space-around;
+        /* flex-flow: row wrap; */
+        align-items: stretch;
+    }
+
+    #new-reminder-container {
+        width: 80%;
+        display: flex;
+        /* flex-direction: row; */
+        align-items: center;
+        /* margin-bottom: 6px; */
+        /* border-bottom: 4px solid darkgrey; */
+        justify-content: space-around;
+        /* flex-flow: row wrap; */
+        align-items: stretch;
+    }
+
+    #dashboard input[type=date] {
+        font-size: var(--date-size);
+        flex-grow: 1;
+        /* background: aquamarine; */
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        width: 100%;
+    }
+
+
+}
+
+@media only screen and (min-width:600px) and (max-width:999px) and (orientation: landscape){
+
+    #new-reminder-submit{
+        width: calc(2 * var(--submitt-font-size));
+        height: calc(2 * var(--submitt-font-size));
+        /* transform: scale(1.5); */
+    }
+
+    #new-reminder-container {
+        border: none;
+        background-color: #dadada;
+        position: fixed;
+        bottom: 50px;
+        padding: 12px 12px 60px;
+        width: calc(88% - 24px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: static;
+    }
+
+    #new-reminder-submit {
+        position: relative;
+        left: 90%;
+    }
+}
+
+
+
+
+
+@media only screen and (min-width:1000px) and (max-width:1999px) and (orientation: landscape){
+
+    #new-reminder-container {
+        border: none;
+        background-color: #dadada;
+        position: sticky;
+        bottom: 72px;
+        padding: 12px;
+        margin-bottom: 0;
+        width: 85%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    #new-reminder-submit{
+        height: 130px !important;
+        width: 130px !important;
+    }
+
+    #dashboard input {
+        font-size: 25px;
+    }
+
+    .reminder-date{
+        font-size: 25px !important;
+    }
+
+    #new-reminder-input, #new-reminder-date{
+        font-size: 20px !important;
+    }
+
+
+
+}
+
+
+
+
+
+@media only screen and (min-width:2000px) and (orientation: landscape){
+
+    #new-reminder-container {
+        border: none;
+        background-color: #dadada;
+        position: sticky;
+        bottom: 50px;
+        padding: 12px 12px 60px;
+        width: calc(88% - 24px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    #new-reminder-submit{
+        height: 200px;
+        width: 200px;
+    }
+
+    #dashboard input {
+        font-size: 30px;
+    }
+
+    .reminder-date{
+        font-size: 30px !important;
+    }
+
+    #new-reminder-input, #new-reminder-date{
+        font-size: 30px !important;
+    }
+
 }

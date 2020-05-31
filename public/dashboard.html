@@ -6,15 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>All your reminders</title>
     <link href="./main.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="https://www.duncanritchie.co.uk/favicon.ico" />
+    <script src="https://kit.fontawesome.com/0f7608553d.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <main id="dashboard">
-        <h1>Reminders</h1>
-        <h2>All your reminders</h2>
+        <div id="top-of-dashboard">
+            <h1>Reminders for <span id="title-username"></span></h1>
+            <button id="sign-out">Sign out</button>
+        </div>
 
+        <p id="edit-rubric">Click into a reminder to edit it, and press enter to save your edit.</p>
         <div id="reminders-container">
             <!-- Reminders from database populate here. -->
-            <div class="reminder-container">
+            <!-- <div class="reminder-container">
                 <input class="reminder-input" value="Buy milk" type="text"/>
                 <input class="reminder-date" value="2019-10-01" type="date" />
                 <button class="reminder-delete-button" key=1>Delete</button>
@@ -38,7 +43,7 @@
                 <input class="reminder-input" value="Get this reminders app finished" type="text"/>
                 <input class="reminder-date" value="2019-10-04" type="date" />
                 <button class="reminder-delete-button" key=5>Delete</button>
-            </div>
+            </div> -->
         </div>
 
         <div id="no-reminders-container">
@@ -46,20 +51,27 @@
             <p>You have no reminders!</p>
         </div>
 
-            <h3>Add a reminder</h3>
+
         <div id="new-reminder-container">
+            <h2>Add a new reminder</h2>
             <!-- Inputs for creating a new reminder. -->
             <input id="new-reminder-input" type="text" placeholder="Type a new reminder here&hellip;" />
             <input id="new-reminder-date" type="date" />
-            <button id="new-reminder-submit" type="submit">Add</button>
+            <button id="new-reminder-submit" type="submit"><i class="fas fa-paper-plane"></i></button>
         </div>
 
     </main>
 
+
     <footer>
-        <p>
-            Made by Duncan Ritchie, Stefan Gouldson, and Tom Ormiston
-        </p>
+
+        <p class="love">Made with <span><i class="fas fa-heart"></i></span> by</p>
+        <div class="madeby">
+            <p><a href="https://www.duncanritchie.co.uk/" title="Duncan Ritchie&rsquo;s website">Duncan Ritchie</a></p>
+            <p><a href="https://stefangouldson.github.io/portfolio/" title="Stefan Gouldson&rsquo;s website">Stefan Gouldson</a></p>
+            <p><a href="http://www.appijumbo.com/" title="Tom Ormiston&rsquo;s website">Tom Ormiston</a></p>
+        </div>
+
     </footer>
     <script src="./client.js"></script>
 </body>

@@ -1,6 +1,5 @@
 console.log("Hello from client.js!")
 
-
 // client side
 
 
@@ -41,10 +40,10 @@ const submit=document.getElementById('submit')
 const inputEmail=document.getElementById('sign-up-email-input')
 const inputUsername=document.getElementById('sign-up-username-input')
 
-let user_id = localStorage.getItem('reminders_user_id') || 2;
-console.log("The user_id is "+user_id)
+let user_id = localStorage.getItem('reminders_user_id');
+let titleUsername = document.getElementById("title-username");
 
-
+let sign_out=document.getElementById('sign-out')
 
 
 // CLIENT-SIDE FUNCTIONS
@@ -52,7 +51,7 @@ console.log("The user_id is "+user_id)
 // Displaying the number of users on the splash page.
 
 const getTotal = async () => {
-    let data = await fetch("http://localhost:3019/total");
+    let data = await fetch("/total");
     let response = await data.json();
     numOfUser.textContent = response.total
 }
@@ -61,18 +60,22 @@ if (numOfUser) {
     getTotal();
 }
 
+if (sign_out){
+    sign_out.addEventListener("click",()=>{
+        location.pathname="/index.html"
+    })
+}
+
 // Sign-up function
 
 const signUp = async () => {
-    const addUserObject = {"username" : "bob", "email" : "bob@hoskins.com"}
+    const addUserObject = {"username" : inputUsername.value, "email" : inputEmail.value}
 
     let response = await fetch("/register", {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify(
             {addUser: addUserObject}
-
-            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }}
         )
     })
 
@@ -81,27 +84,27 @@ const signUp = async () => {
 
     if (result.message === "Added new user ok") {
         console.log("Signup successful!")
+        alert('Username added! Please go to sign-in!')
     }
-    else {
-        console.log("Signup failed!")
+
+    if (result.message === "ER_DUP_ENTRY"){
+        alert('Error, username is taken')
     }
-//    if (result.message == "ER_DUP_ENTRY"){
-//        alert('Error, username is taken')
-//    }
-    // console.table(result)
-// }
-
-// submit.addEventListener("click",signUp);
-
-//const getTotal = async () => {
-//    let data = await fetch("http://localhost:3019/total");
-//    let response = await data.json();
-//    numOfUser.textContent = response.total
 
 }
 
 if (signUpButton) {
     signUpButton.addEventListener("click",signUp);
+    inputEmail.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signUp()
+        }
+    });
+    inputUsername.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signUp()
+        }
+    });
 }
 
 // Sign-in function
@@ -111,20 +114,39 @@ const signIn = async () => {
 
     let response = await fetch(`/signin?username=${username}`)
     let data = await response.json()
-    console.log(`sign in username ${data}`)
+    // console.log(data);
+    // console.log(`sign in user has id ${data.id}`)
     // should get a user_id back
 
-
     // We need to enter user_id into local storage so that dashboard functions can access it.
-    localStorage.setItem('reminders_username',usernameInput.value);
-    localStorage.setItem('reminders_user_id', data);
+    localStorage.setItem('reminders_user_id', data.id);
+    localStorage.setItem('reminders_username', username);
+    // console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+    // console.log("Local storage has "+localStorage.getItem('reminders_username'))
+
+    if (data.id) {
+        location.pathname = "/dashboard.html"
+    }
+    else {
+        alert('Username not recognised! Please check your username or sign up.')
+    }
 }
 
 if (signInButton) {
     signInButton.addEventListener("click",signIn);
+    usernameInput.addEventListener("keyup",(e)=>{
+        if (e.keyCode===13) {
+            signIn()
+        }
+    })
 }
 
 const displayReminders = (reminderObjects) => {
+    // console.log("Local storage has "+localStorage.getItem('reminders_user_id'))
+    // console.log("Local storage has "+localStorage.getItem('reminders_username'))
+
+    titleUsername.textContent = localStorage.getItem('reminders_username');
+
     // Clear any pre-existing reminders.
     remindersContainer.innerHTML = "";
 
@@ -161,7 +183,7 @@ const displayReminders = (reminderObjects) => {
                         reminder: reminderInput.value,
                         date_added: reminderDate.value
                     }
-                    console.log(editedReminderObject)
+                    // console.log(editedReminderObject)
                     editReminder(editedReminderObject)
                     // reminderInput.focus()
                 }
@@ -179,7 +201,7 @@ const displayReminders = (reminderObjects) => {
                         reminder: reminderInput.value,
                         date_added: reminderDate.value
                     }
-                    console.log(editedReminderObject)
+                    // console.log(editedReminderObject)
                     editReminder(editedReminderObject)
                     // reminderDate.focus();
                 }
@@ -187,7 +209,8 @@ const displayReminders = (reminderObjects) => {
 
             reminderDeleteButton.className = "reminder-delete-button";
             reminderDeleteButton.key = reminderObject.id;
-            reminderDeleteButton.textContent = "Delete";
+            // reminderDeleteButton.textContent = "Delete";
+            reminderDeleteButton.innerHTML = '<button class="reminder-delete-button" key=1><i class="fas fa-trash"></i></button>';
             reminderDeleteButton.addEventListener("click",() => {
                 console.log("Trying to delete!")
                 deleteReminder(reminderObject.id)
@@ -197,7 +220,7 @@ const displayReminders = (reminderObjects) => {
             div.appendChild(reminderDate);
             div.appendChild(reminderDeleteButton);
 
-            console.log(div)
+            // console.log(div)
             remindersContainer.appendChild(div);
         })
     }
@@ -214,7 +237,7 @@ const readReminders = async () => {
     let response = await fetch(`/readreminder?user_id=${user_id}`)
     let data = await response.json()
     
-    console.log(`returned data from user_id 3, readreminder is ${data}`)
+    // console.log(`returned data from user_id 3, readreminder is ${data}`)
 
     displayReminders(data)
 }
@@ -228,7 +251,7 @@ const getNewReminderFromInput = () => {
         }
         addReminderInput.value = ""
         addReminderDate.value = ""
-        console.log(reminderObject)
+        // console.log(reminderObject)
         addReminder(reminderObject)
     }
     else {
@@ -247,7 +270,7 @@ const addReminder = async (reminderObject) => {
     })
 
     let result = await response.json()
-    console.log(result)
+    // console.log(result)
     readReminders();
 }
 
@@ -321,38 +344,36 @@ for (let i = 0; i < deleteReminderButtons.length; i++) {
 // }
 
 if (remindersContainer) {
-    console.log("This page has a reminder-container!")
+    // console.log("This page has a reminder-container!")
     readReminders()
 }
 
 
 // FUNCTIONS TOGGLING DIVS DISPLAYING ON INDEX.HTML
 
-if (splash) {
-    signInDiv.style.display="none";
+signInDiv.style.display="none";
+signUpDiv.style.display="none";
+
+signInFromSignUpButton.addEventListener("click",()=>{
+    signInDiv.style.display="flex";
     signUpDiv.style.display="none";
+    splash.style.display="none";
+})
 
-    signInFromSignUpButton.addEventListener("click",()=>{
-        signInDiv.style.display="flex";
-        signUpDiv.style.display="none";
-        splash.style.display="none";
-    })
+signUpFromSignInButton.addEventListener("click",()=>{
+    signUpDiv.style.display="flex";
+    signInDiv.style.display="none";
+    splash.style.display="none";
+})
 
-    signUpFromSignInButton.addEventListener("click",()=>{
-        signUpDiv.style.display="flex";
-        signInDiv.style.display="none";
-        splash.style.display="none";
-    })
+signInFromHomeButton.addEventListener("click",()=>{
+    signInDiv.style.display="flex";
+    signUpDiv.style.display="none";
+    splash.style.display="none";
+})
 
-    signInFromHomeButton.addEventListener("click",()=>{
-        signInDiv.style.display="flex";
-        signUpDiv.style.display="none";
-        splash.style.display="none";
-    })
-
-    signUpFromHomeButton.addEventListener("click",()=>{
-        signUpDiv.style.display="flex";
-        signInDiv.style.display="none";
-        splash.style.display="none";
-    })
-}
+signUpFromHomeButton.addEventListener("click",()=>{
+    signUpDiv.style.display="flex";
+    signInDiv.style.display="none";
+    splash.style.display="none";
+})

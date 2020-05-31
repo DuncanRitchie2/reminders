@@ -1,15 +1,37 @@
 const mysql = require('mysql')
 const { promisify } = require('util')
 
+if (process.env.ENVIRONMENT != "PRODUCTION") {
+	const dotenv = require('dotenv');
+	dotenv.config()
+}
+
+// ******************** CHECK THIS *******************
+// make sure the local mysql setup corresponds to this
+// e.g. password should not typically be 'password' for
+// the mysql server
 
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "reminder_app"
+    host: process.env.HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DATABASE
 })
 
+//  connection.query(' query passed here')  
+// is the non-promisified form
+// but we want to uses promises so we promisify it and 
+// --> Unclear on why we need bind but its what previous code
+// snippets suggest
+
 const promisifiedQuery = promisify(connection.query).bind(connection)
+
+
+
+// Methods for:
+// runTotal, addUser
+// readReminder, isUserRegistered, addReminder, editReminder, deleteReminder
+
 
 // gets total number of users
 const runTotal = async () =>{
@@ -75,7 +97,7 @@ const isUserRegistered = async (usernameGiven) => {
             return data[0].id
         }
         else{
-            console.log('user doesn\'t exist in database, client needs to ask to register')
+            console.log('user dosnt exist in database, client needs to ask to register')
             console.log(false)
             return false
         }
@@ -138,8 +160,8 @@ const addUser = async (addUser) => {
         // server should send this user_id to client 
         
         console.log('Add user via SQL query')
-        console.log(data.affectedRows)
-        return(data.affectedRows)
+        console.log(data)
+        return(data.message || "Added new user ok")
 
 
     } catch (error) {

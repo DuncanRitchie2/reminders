@@ -1,19 +1,20 @@
-// require dependancies
+// require dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
-
-// Pull in methods form app.js
-const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder,runTotal} = require('./app')
-
 const app = express()
+const port = process.env.PORT || 3019;
+
+// Methods relating to the database
+const { readReminder, isUserRegistered, addReminder, addUser, editReminder, deleteReminder, runTotal} = require('./app')
+
 
 // define the path where the public files are. 
 // This has to be an absolute path
 app.use(express.static(path.join(__dirname, "public")))
 
 
-// To allow HTTP POST requests in Expresss set up bodyParser
+// To allow HTTP POST requests in Express, set up bodyParser
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -21,10 +22,19 @@ app.get("/total", async (req, res) =>{
     const total = await runTotal();
 
     res.send({
-        total:total[0].num
+        total: total[0].num
     });
 });
 
+
+
+
+
+// Setup RESTful api  GET, POST PUT and DELETE for
+// each type of fetch api is given its own endpoint
+// it then takes in the request, selects whats needed
+// from the request data and via a method
+// (held in app.js module), gives the responce back
 
 
 // GET   /readreminder
@@ -47,10 +57,11 @@ app.post("/register", async (req,res) => {
 
 // GET   /signin
 app.get("/signin", async (req,res) => {
-
-    const data = await isUserRegistered(req.body.isUserRegistered)
+    console.log("req.query:")
+    console.table(req.query)
+    const data = await isUserRegistered(req.query.username)
     console.log(data)  
-    res.send(data)  // returns id of user or false
+    res.send({"id": data})  // returns id of user or false
 })
 
 
@@ -94,6 +105,6 @@ app.put("/editreminders", async (req,res) => {
 
 
 // setup basic URL where server exists
-app.listen(3019, () => {
-    console.log('listening to localhost:3019')
+app.listen(port, () => {
+    console.log('listening to port '+port)
 })
