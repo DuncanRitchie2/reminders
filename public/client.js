@@ -41,7 +41,8 @@ const submit=document.getElementById('submit')
 const inputEmail=document.getElementById('sign-up-email-input')
 const inputUsername=document.getElementById('sign-up-username-input')
 
-let user_id = 2;
+let user_id = localStorage.getItem('reminders_user_id') || 2;
+console.log("The user_id is "+user_id)
 
 
 
@@ -69,10 +70,10 @@ const signUp = async () => {
         method:"POST",
         headers: { "content-type" : "application/json" },
         body: JSON.stringify(
-            {addUser: addUserObject
+            {addUser: addUserObject}
 
-            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }
-        })
+            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }}
+        )
     })
 
     let result = await response.json()
@@ -115,6 +116,8 @@ const signIn = async () => {
 
 
     // We need to enter user_id into local storage so that dashboard functions can access it.
+    localStorage.setItem('reminders_username',usernameInput.value);
+    localStorage.setItem('reminders_user_id', data);
 }
 
 if (signInButton) {
@@ -325,29 +328,31 @@ if (remindersContainer) {
 
 // FUNCTIONS TOGGLING DIVS DISPLAYING ON INDEX.HTML
 
-signInDiv.style.display="none";
-signUpDiv.style.display="none";
-
-signInFromSignUpButton.addEventListener("click",()=>{
-    signInDiv.style.display="flex";
-    signUpDiv.style.display="none";
-    splash.style.display="none";
-})
-
-signUpFromSignInButton.addEventListener("click",()=>{
-    signUpDiv.style.display="flex";
+if (splash) {
     signInDiv.style.display="none";
-    splash.style.display="none";
-})
-
-signInFromHomeButton.addEventListener("click",()=>{
-    signInDiv.style.display="flex";
     signUpDiv.style.display="none";
-    splash.style.display="none";
-})
 
-signUpFromHomeButton.addEventListener("click",()=>{
-    signUpDiv.style.display="flex";
-    signInDiv.style.display="none";
-    splash.style.display="none";
-})
+    signInFromSignUpButton.addEventListener("click",()=>{
+        signInDiv.style.display="flex";
+        signUpDiv.style.display="none";
+        splash.style.display="none";
+    })
+
+    signUpFromSignInButton.addEventListener("click",()=>{
+        signUpDiv.style.display="flex";
+        signInDiv.style.display="none";
+        splash.style.display="none";
+    })
+
+    signInFromHomeButton.addEventListener("click",()=>{
+        signInDiv.style.display="flex";
+        signUpDiv.style.display="none";
+        splash.style.display="none";
+    })
+
+    signUpFromHomeButton.addEventListener("click",()=>{
+        signUpDiv.style.display="flex";
+        signInDiv.style.display="none";
+        splash.style.display="none";
+    })
+}

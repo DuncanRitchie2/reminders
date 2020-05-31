@@ -75,7 +75,7 @@ const isUserRegistered = async (usernameGiven) => {
             return data[0].id
         }
         else{
-            console.log('user dosnt exist in database, client needs to ask to register')
+            console.log('user doesn\'t exist in database, client needs to ask to register')
             console.log(false)
             return false
         }
