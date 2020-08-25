@@ -51,7 +51,7 @@ let sign_out=document.getElementById('sign-out')
 // Displaying the number of users on the splash page.
 
 const getTotal = async () => {
-    let data = await fetch("http://localhost:3019/total");
+    let data = await fetch("/total");
     let response = await data.json();
     numOfUser.textContent = response.total
 }
@@ -76,8 +76,6 @@ const signUp = async () => {
         headers: { "content-type" : "application/json" },
         body: JSON.stringify(
             {addUser: addUserObject}
-
-            // {addUser: {"username" : inputUsername.value, "email" : inputEmail.value }}
         )
     })
 
@@ -88,20 +86,10 @@ const signUp = async () => {
         console.log("Signup successful!")
         alert('Username added! Please go to sign-in!')
     }
-    // else {
-    //     console.log("Signup failed!")
-    // }
+
     if (result.message === "ER_DUP_ENTRY"){
         alert('Error, username is taken')
     }
-// }
-
-// submit.addEventListener("click",signUp);
-
-//const getTotal = async () => {
-//    let data = await fetch("http://localhost:3019/total");
-//    let response = await data.json();
-//    numOfUser.textContent = response.total
 
 }
 
